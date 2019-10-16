@@ -1,12 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "@sncf/bootstrap-sncf.metier/dist/bootstrap-sncf.css";
+import "@sncf/bootstrap-sncf.metier/dist/bootstrap-sncf.js";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button type="button" className="btn btn-primary">
+          Primary
+        </button>
         <p>
          <h1>Hello Sncf</h1>
         </p>
