@@ -8,15 +8,15 @@ import NavBar from "./components/NavBar";
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <button type="button" className="btn btn-primary">
           Primary
         </button>
-        <p>
-         <h1>Hello Sncf</h1>
-        </p>
+
+        <h1>Hello Sncf</h1>
+
         <a
           className="App-link"
           href="https://reactjs.org"

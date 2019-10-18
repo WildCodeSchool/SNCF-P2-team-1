@@ -1,16 +1,13 @@
-import React from 'react';
+import React from "react";
 
 function NavBar() {
-    return (
-
-        <header role="banner" className="container mastheader-title d-none d-xl-block">
+  return (
+    <header role="banner" className="container mastheader-title d-xl-block">
       <nav className="NavBar">
-      <div class="mastheader">
-    </div>
+        <div className="mastheader">Logo</div>
       </nav>
-      </header>
-    );
-  }
-
+    </header>
+  );
+}
 
 export default NavBar;
