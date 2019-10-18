@@ -14,9 +14,7 @@ function App() {
         <button type="button" className="btn btn-primary">
           Primary
         </button>
-
         <h1>Hello Sncf</h1>
-
         <a
           className="App-link"
           href="https://reactjs.org"
