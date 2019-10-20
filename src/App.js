@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import "@sncf/bootstrap-sncf.metier/dist/bootstrap-sncf.css";
 import "@sncf/bootstrap-sncf.metier/dist/bootstrap-sncf.js";
 import NavBar from "./components/Navbar/NavBar";
