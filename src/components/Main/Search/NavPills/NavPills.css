@@ -1,0 +1,44 @@
+.nav-pills {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-link {
+    display: inherit;
+    background-color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1em .2em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+}
+.nav-link.active {
+    background-color: #0088ce;
+    color: #fff;
+}
+.nav-link.active::after {
+    content:'';
+    position: absolute;
+    top: 3em;
+    left: 42%;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #0088ce;
+}
+.nav-link:hover, .nav-link.active:hover  {
+    background-color: #005783;
+    color: #fff;
+}
+.nav-link.active:hover::after {
+    border-top: 20px solid #005783;
+}
+.tab-content .tab-pane {
+    background-color: #fff;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+    padding: 2em 1em 2em 1em;
+}
