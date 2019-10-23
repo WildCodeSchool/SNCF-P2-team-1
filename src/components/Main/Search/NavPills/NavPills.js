@@ -17,14 +17,6 @@ function NavPills() {
                         </a>
                     </li>
                 </ul>
-                <div class="tab-content py-3 mx-2" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home form-itineraire" role="tabpanel" aria-labelledby="pills-home-tab">
-                        form...
-                    </div>
-                    <div class="tab-pane fade next-departures" id="pills-profile form-temps-reel" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        form...
-                    </div>
-                </div>
             </div>
         </div>
     )

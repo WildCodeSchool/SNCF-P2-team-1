@@ -35,10 +35,3 @@
 .nav-link.active:hover::after {
     border-top: 20px solid #005783;
 }
-.tab-content .tab-pane {
-    background-color: #fff;
-    -webkit-border-radius: .3em;
-    -moz-border-radius: .3em;
-    border-radius: .3em;
-    padding: 2em 1em 2em 1em;
-}
