@@ -1,6 +1,6 @@
 import React from "react";
 import './NavBar.css';
-import logo from '../../resources/img/logo_transilien.png';
+import logo from '../../../resources/img/logo_transilien.png';
 
 function NavBar() {
   return (
