@@ -1,8 +1,9 @@
 import React from "react";
 import "./JourneyOptionDetailTime.css";
 import clock from "../../../../../../../resources/img/clock.png";
+import LiDetailsTime from "./LiDetailsTime";
 
-class JourneyOptionDetailTime extends React.Component {
+class DetailsTime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,51 +12,15 @@ class JourneyOptionDetailTime extends React.Component {
         minute: "2-digit"
       })}`,
       isDisplay: false,
-      lastSearchtTime: "",
-      test: false
+      lastSearchtTime: ""
     };
+    this.myRef = React.createRef();
   }
   changeDisplay = () => {
     this.setState({
       isDisplay: !this.state.isDisplay
     });
-  };
-  renderLi = () => {
-    let array = [];
-    for (let index = 0; index < 24; index++) {
-      if (index < 10) {
-        array.push(`0${index}:00`);
-        array.push(`0${index}:15`);
-        array.push(`0${index}:30`);
-        array.push(`0${index}:45`);
-      } else {
-        array.push(`${index}:00`);
-        array.push(`${index}:15`);
-        array.push(`${index}:30`);
-        array.push(`${index}:45`);
-      }
-    }
-    return array;
-  };
-
-  renderUl = () => {
-    if (this.state.isDisplay) {
-      return (
-        <ul className="hoursUl">
-          {this.testing}
-          {this.renderLi().map((time, index) => (
-            <li
-              className={this.compare(time, this.state.text)}
-              onClick={() => this.selectedText(time)}
-              key={index}
-              id={`${time}`}
-            >
-              {time}
-            </li>
-          ))}
-        </ul>
-      );
-    }
+    this.focusTextInput();
   };
   compare = (a, b) => {
     if (a === b) {
@@ -77,25 +42,37 @@ class JourneyOptionDetailTime extends React.Component {
       text: value
     }));
   };
+  focusTextInput = () => {
+    this.myRef.current.focus();
+  };
 
   render() {
     const { text } = this.state;
     return (
-      <div className="clock">
-        <input
-          className="input-text"
-          type="text"
-          value={text}
-          onChange={this.onTextChange}
-          autoFocus={this.state.isDisplay}
-        />
-        <button className="hours-button" onClick={this.changeDisplay}>
-          <img src={clock} alt="logo" />
-        </button>
-        {this.renderUl()}
-      </div>
+      <>
+        <div className="clock">
+          <input
+            className="input-text"
+            type="text"
+            value={text}
+            onChange={this.onTextChange}
+            ref={this.myRef}
+          />
+          <button className="hours-button" onClick={this.changeDisplay}>
+            <img src={clock} alt="logo" />
+          </button>
+          {this.state.isDisplay && (
+            <LiDetailsTime
+              compare={this.compare}
+              text={this.state.text}
+              changeDisplay={this.changeDisplay}
+              selectedText={this.selectedText}
+            />
+          )}
+        </div>
+      </>
     );
   }
 }
 
-export default JourneyOptionDetailTime;
+export default DetailsTime;
