@@ -7,7 +7,7 @@ import JourneyOption from './JourneyOption/JourneyOption';
 function Journey() {
     return (
         <div className="tab-pane fade show active col-sm-12 mx-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <JourneyTitle title="Itinéraires" />
+            <JourneyTitle />
             <JourneyInput />
             <JourneyOption />
         </div>
