@@ -7,7 +7,7 @@ function Search() {
     return(
         <div className='container search mt-5 pt-5'>
             <NavPills />
-            <div class="tab-content py-3 row" id="pills-tabContent">
+            <div className="tab-content py-3 row" id="pills-tabContent">
                 <Journey />
                 <Departure />
             </div>
