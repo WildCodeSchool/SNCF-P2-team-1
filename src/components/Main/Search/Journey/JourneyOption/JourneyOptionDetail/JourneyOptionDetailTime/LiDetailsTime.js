@@ -30,10 +30,11 @@ class LiDetailsTime extends React.Component {
     } else {
       window.location.href = `#${this.props.text}`;
     }
-    document.addEventListener("mousedown", this.handleClick);
+    document.addEventListener("click", this.handleClick);
   }
+
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClick);
+    document.removeEventListener("click", this.handleClick);
   }
   handleClick = e => {
     if (!this.myRefUl.current.contains(e.target)) {
