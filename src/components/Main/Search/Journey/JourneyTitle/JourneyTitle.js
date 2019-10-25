@@ -1,10 +1,10 @@
 import React from 'react';
 
-function JourneyTitle(props) {
+function JourneyTitle() {
     return (
         <div className='row'>
             <div className='col-sm-12'>
-                <h2>{props.title}</h2>
+                <h2>Itinéraires</h2>
             </div>
         </div>
     )

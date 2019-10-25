@@ -5,7 +5,7 @@ import JourneyOptionDetailTime from './JourneyOptionDetailTime/JourneyOptionDeta
 
 function JourneyOptionDetail() {
     return(
-        <div className='col-6 d-flex justify-content-between'>
+        <div className='col-12 col-lg-6 d-flex justify-content-between'>
             <JourneyOptionDetailSelect />
             <JourneyOptionDetailDate />
             <JourneyOptionDetailTime />
