@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from './Search/Search';
 import './Main.css';
+import Search from './Search/Search';
 import Banner from './Banner/Banner';
 
 function Main() {
