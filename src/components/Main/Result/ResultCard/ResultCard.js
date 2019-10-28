@@ -13,7 +13,7 @@ const [result ] = useState(sampleResult);
             <div className='col-12 result-card'>
                 {result.journeys.map(journey =>
                 <ul key={journey.dateArrival}>
-                    <li>
+                    <li className='result-time'>
                         <ul>
                             <li>
                                 {journey.dateArrival.slice(journey.dateArrival.indexOf('T')+1)}
@@ -23,7 +23,7 @@ const [result ] = useState(sampleResult);
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li className='result-duration'>
                         <ul>
                             <li>
                                 {journey.totalDuration.replace("PT", "").toLowerCase()}
@@ -35,22 +35,22 @@ const [result ] = useState(sampleResult);
                         </ul>
                         
                     </li>
-                    <li>
+                    <li className='result-roadmap'>
                         {journey.sections.map(
                             transport => {
                                 if(transport.transport) {
                                     //console.log(transport.transport)
                                     if(transport.transport.line) {
                                         return (
-                                        <span key={transport.arrival.dateTime}> {transport.transport.mode} {transport.transport.line.label} </span>
+                                        <span key={transport.arrival.dateTime}> {transport.transport.mode} {transport.transport.line.label}</span>
                                         )
                                     }
-                                    return(<span key={transport.arrival.dateTime}>{transport.transport.mode} </span>)
+                                    return(<span key={transport.arrival.dateTime}>{transport.transport.mode}</span>)
                                 }
                             }
                         )}
                     </li>
-                    <li>{journey.price / 100} €</li>
+                    <li className='result-price'>{journey.price / 100} €</li>
                     <li className='result-details'>
                         Détails
                     </li>
