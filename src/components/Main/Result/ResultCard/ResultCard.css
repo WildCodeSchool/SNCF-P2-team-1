@@ -1,0 +1,33 @@
+.result-card {
+    margin: 1em auto;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.result-card > ul {
+    padding: 1em;
+    margin: .25em auto 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #AFAFAF;
+    border-radius: .5em;
+}
+.result-card > ul > li {
+    border-right: 1px solid #AFAFAF;
+    text-align: center;
+    flex: 1;
+    min-height: 4em;
+}
+.result-card > ul > li:last-child {
+    border-right: 0;
+    padding-right: 0;
+}
+/***************/
+.result-details {
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #0088ce;
+}
