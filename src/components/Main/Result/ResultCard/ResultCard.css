@@ -23,6 +23,8 @@ ul {
     justify-content: space-between;
 }
 .result-card > ul > li:last-child { border-bottom: 0; }
+.walkingDuration { font-size: 0.875em; }
+/***************/
 .result-roadmap span::after {
     content: ' • ';
     font-size: 1.3rem;
@@ -47,13 +49,6 @@ ul {
         flex-direction: row;
         justify-content: space-between;
     }
-    .result-card > ul > li:first-child, .result-card > ul > li:last-child ul { padding: 0; }
-    .result-card > ul > li:first-child, .result-card > ul > li:last-child ul {  justify-content: space-around; }
-    .result-card ul li.result-roadmap, .result-card > ul > li { flex: 1; }
-    .result-card ul li.result-roadmap { 
-        padding-left: 1em;
-        text-align: left;
-    }
     .result-card > ul > li {
         border-right: 1px solid #AFAFAF;
         border-bottom: 0;
@@ -65,9 +60,30 @@ ul {
         border-right: 0;
         padding-right: 0;
     }
+    .result-card > ul > li:first-child, .result-card > ul > li:last-child ul { 
+        padding: 0; 
+        justify-content: space-around; 
+    }
     .result-time, .result-duration, .result-price , .result-details { padding-right: 1em; }
     .result-card > ul > li:last-child ul li { flex: 1; }
     .result-time, .result-price { border-right: 1px solid #AFAFAF; }
+    /* TIME */
+    .result-time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    /* ROADMAP */
+    .result-card ul li.result-roadmap, .result-card > ul > li { flex: 1; }
+    .result-card ul li.result-roadmap { 
+        padding-left: 1em;
+        text-align: left;
+    }
+    .result-price, .result-details {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+    }
 }
 @media (min-width: 992px) {
     .result-card > ul > li { flex: 1; }
