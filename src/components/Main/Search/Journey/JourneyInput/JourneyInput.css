@@ -1,0 +1,49 @@
+.journey-input {
+  height: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.form-input {
+  width: 45%;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #0088ce;
+  -moz-outline-radius: 5px;
+}
+
+.form-input:focus {
+  box-shadow: 0px 0px 0px 3px rgb(0, 136, 206);
+  outline-width: 0;
+}
+
+.form-input::placeholder {
+  text-indent: 5%;
+}
+
+.switch-input {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: #0088ce;
+  border-radius: 50%;
+  margin: 0px -10px 0px -10px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .journey-input {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .form-input {
+    width: 100%;
+  }
+  .form-input-go-from {
+    margin-bottom: 10px;
+  }
+}
