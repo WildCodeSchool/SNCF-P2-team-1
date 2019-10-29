@@ -7,33 +7,22 @@ ul {
     padding: 0;
 }
 .result-card > ul {
-    padding: 1em;
-    margin: .25em auto 1em;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     border: 1px solid #AFAFAF;
+    margin-top: 1em;
+    margin-bottom: 1em;
     border-radius: .5em;
 }
 .result-card > ul > li {
-    border-right: 1px solid #AFAFAF;
-    text-align: center;
-    min-height: 4em;
+    border-bottom: 1px solid #AFAFAF;
+    padding: 1em;
 }
-.result-card > ul > li:last-child {
-    border-right: 0;
-    padding-right: 0;
+.result-card > ul > li:first-child, .result-card > ul > li:last-child ul {
+    display: flex;
+    justify-content: space-between;
 }
-/****************/
-.result-time, .result-duration, .result-price, .result-details {
-    flex: 1;
-}
-/****************/
-.result-card ul li.result-roadmap { 
-    flex: 3; 
-    padding-left: 1em;
-    text-align: left;
-}
+.result-card > ul > li:last-child { border-bottom: 0; }
 .result-roadmap span::after {
     content: ' • ';
     font-size: 1.3rem;
@@ -47,4 +36,40 @@ ul {
     cursor: pointer;
     text-transform: uppercase;
     color: #0088ce;
+    font-size: .875em;
+}
+/* Medium devices (tablets, 768px and up) /*/
+@media (min-width: 768px) {
+    .result-card > ul {
+        padding: 1em;
+        margin: .25em auto 1em;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .result-card > ul > li:first-child, .result-card > ul > li:last-child ul { padding: 0; }
+    .result-card > ul > li:first-child, .result-card > ul > li:last-child ul {  justify-content: space-around; }
+    .result-card ul li.result-roadmap, .result-card > ul > li { flex: 1; }
+    .result-card ul li.result-roadmap { 
+        padding-left: 1em;
+        text-align: left;
+    }
+    .result-card > ul > li {
+        border-right: 1px solid #AFAFAF;
+        border-bottom: 0;
+        text-align: center;
+        min-height: 4em;
+    }
+    .result-card > ul > li:last-child li { min-height: 4em; }
+    .result-card > ul > li:last-child {
+        border-right: 0;
+        padding-right: 0;
+    }
+    .result-time, .result-duration, .result-price , .result-details { padding-right: 1em; }
+    .result-card > ul > li:last-child ul li { flex: 1; }
+    .result-time, .result-price { border-right: 1px solid #AFAFAF; }
+}
+@media (min-width: 992px) {
+    .result-card > ul > li { flex: 1; }
+    .result-card ul li.result-roadmap {  flex: 2; }
 }

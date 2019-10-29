@@ -13,8 +13,8 @@ const [result ] = useState(sampleResult);
             <div className='col-12 result-card'>
                 {result.journeys.map(journey =>
                 <ul key={journey.dateArrival}>
-                    <li className='result-time'>
-                        <ul>
+                    <li>
+                        <ul className='result-time'>
                             <li>
                                 {journey.dateArrival.slice(journey.dateArrival.indexOf('T')+1)}
                             </li>
@@ -22,16 +22,14 @@ const [result ] = useState(sampleResult);
                                 {journey.dateDeparture.slice(journey.dateArrival.indexOf('T')+1)}
                             </li>
                         </ul>
-                    </li>
-                    <li className='result-duration'>
-                        <ul>
+                        <ul className='result-duration'>
                             <li>
                                 {journey.totalDuration.replace("PT", "").toLowerCase()}
                             </li>
-                            <li>
+                            <li className='walkingDuration'>
                                 {journey.walkingDuration.replace("PT", "").toLowerCase()}
+                                <p>de marche</p>
                             </li>
-                            <li>de marche</li>
                         </ul>
                         
                     </li>
@@ -45,14 +43,19 @@ const [result ] = useState(sampleResult);
                                         <span key={transport.arrival.dateTime}> {transport.transport.mode} {transport.transport.line.label}</span>
                                         )
                                     }
+                                    if(transport.transport.mode === 'WALKING'){
+                                        return(<span> icon </span>)
+                                    }
                                     return(<span key={transport.arrival.dateTime}>{transport.transport.mode}</span>)
                                 }
                             }
                         )}
                     </li>
-                    <li className='result-price'>{journey.price / 100} €</li>
-                    <li className='result-details'>
-                        Détails
+                    <li>
+                        <ul>
+                            <li className='result-price'>{journey.price ? journey.price / 100 + '0 €':  '-'}</li>
+                            <li className='result-details'>Détails</li>
+                        </ul>
                     </li>
                 </ul>
                 )}
