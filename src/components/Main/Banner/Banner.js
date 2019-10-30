@@ -8,7 +8,9 @@ function Banner() {
         <a
           href="https://www.transilien.com/fr/acheter-mon-forfait-navigo-en-ligne"
           aria-label="lien Navigo"
-        ></a>
+        >
+          {" "}
+        </a>
       </div>
     </div>
   );
