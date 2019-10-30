@@ -45,7 +45,6 @@ const [result ] = useState(sampleResult);
                             {journey.sections.map(
                                 (transport, index) => {
                                     if(transport.transport) {
-                                        //console.log(transport.transport)
                                         if(transport.transport.line) {
                                             return (
                                             <span key={index}> {transport.transport.mode} {transport.transport.line.label}</span>
@@ -56,6 +55,7 @@ const [result ] = useState(sampleResult);
                                         }
                                         return(<span key={index}>{transport.transport.mode}</span>)
                                     }
+                                    return(<span key={index}> </span>)
                                 }
                             )}
                         </li>
