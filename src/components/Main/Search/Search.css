@@ -6,16 +6,13 @@
     -moz-border-radius: .3em;
     border-radius: .3em;
     padding: 1em;
-    position: absolute;
-    top: 1em;
-    left: 0;
+    min-height: 10em;
 }
-
 .example-appear {
-    opacity: 0.01;
-  }
-  .example-appear-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-  }
+  opacity: 0.01;
+}
+.example-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
  

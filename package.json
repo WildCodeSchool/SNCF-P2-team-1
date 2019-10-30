@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "https://www.transilien.com/",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "@sncf/bootstrap-sncf.metier": "^4.3.1-r3",
     "axios": "^0.19.0",
     "react": "^16.10.2",
