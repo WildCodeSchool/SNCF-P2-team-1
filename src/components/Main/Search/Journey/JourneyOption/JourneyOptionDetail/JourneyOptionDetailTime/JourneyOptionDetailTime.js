@@ -2,15 +2,12 @@ import React from "react";
 import "./JourneyOptionDetailTime.css";
 import clock from "../../../../../../../resources/img/clock.png";
 import LiDetailsTime from "./LiDetailsTime";
+import { connect } from "react-redux";
 
 class DetailsTime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: `${new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-      })}`,
       isDisplay: false,
       lastSearchtTime: ""
     };
@@ -32,29 +29,27 @@ class DetailsTime extends React.Component {
 
   selectedText = x => {
     this.setState({
-      isDisplay: false,
-      text: x
+      isDisplay: false
     });
+    this.props.newTime(x);
   };
   onTextChange = e => {
     const value = e.target.value;
-    this.setState(() => ({
-      text: value
-    }));
+    this.props.newTime(value);
   };
   focusTextInput = () => {
     this.myRef.current.focus();
   };
 
   render() {
-    const { text } = this.state;
+    const { time } = this.props;
     return (
       <>
         <div className="clock">
           <input
             className="input-text"
             type="text"
-            value={text}
+            value={time}
             onChange={this.onTextChange}
             ref={this.myRef}
           />
@@ -64,7 +59,7 @@ class DetailsTime extends React.Component {
           {this.state.isDisplay && (
             <LiDetailsTime
               compare={this.compare}
-              text={this.state.text}
+              text={this.props.time}
               changeDisplay={this.changeDisplay}
               selectedText={this.selectedText}
             />
@@ -74,5 +69,19 @@ class DetailsTime extends React.Component {
     );
   }
 }
-
-export default DetailsTime;
+const mapStateToProps = state => {
+  return {
+    time: state.time
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    newTime: x => {
+      dispatch({ type: "ADD_TIME", time: x });
+    }
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DetailsTime);
