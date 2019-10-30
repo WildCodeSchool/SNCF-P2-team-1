@@ -22,6 +22,24 @@ ul {
     display: flex;
     justify-content: space-between;
 }
+.timeArrival i {
+    display: inline-block;
+    position: relative;
+    left: -5px;
+    width: .75em;
+    height: .75em;
+    border-radius: .5em;
+    background-color: #0088ce;
+}
+.result-time li:nth-child(2){
+    flex: 1;
+    border-left: 1px solid #0088ce;
+}
+.timeDeparture i { 
+    color: #0088ce;
+    position: relative;
+    left: -5px;
+}
 .result-card > ul > li:last-child { border-bottom: 0; }
 .walkingDuration { font-size: 0.875em; }
 /***************/
