@@ -1,11 +1,25 @@
-import React from 'react';
-import './JourneyOptionDetailSelect.css';
-
+import React from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
+import './JourneyOptionDetailSelect.css'
 function JourneyOptionDetailSelect() {
-    return(
-        <div>
-            Option Select here...
-        </div>
-    )
+	const dateType = useSelector((state) => state.dateType);
+	const dispatch = useDispatch();
+	return (
+		<div className="detail-select">
+			<select
+				className=" input-detail"
+				value={dateType}
+				onChange={(e) =>
+					dispatch({ type: "ADD_DATETYPE", dateType: e.target.value })
+				}
+			>
+				<option value="DEPARTURE">Départ</option>
+				<option value="ARRIVAL">Arrivée à</option>
+			</select>
+		</div>
+	);
 }
-export default JourneyOptionDetailSelect;
+export default connect(
+	null,
+	null,
+)(JourneyOptionDetailSelect);
