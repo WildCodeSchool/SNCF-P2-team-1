@@ -1,5 +1,6 @@
 .clock {
   position: relative;
+  width: 30%;
 }
 .input-text {
   background-color: #ffffff;
@@ -9,11 +10,11 @@
   box-sizing: border-box;
   -webkit-box-shadow: initial;
   box-shadow: initial;
-  min-height: 5rem;
   line-height: normal;
-  font-size: 1.6rem;
   font-weight: 400;
   width: 100%;
+  height: 100%;
+  font-size: 1.3rem;
   padding-left: 1rem;
   outline: 0 #00669b;
   -webkit-appearance: none;
