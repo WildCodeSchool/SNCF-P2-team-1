@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
+import './JourneyOptionDetailDate.css';
 import DatePicker from 'react-datepicker';
 import { addDays } from 'date-fns';
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
@@ -12,7 +12,7 @@ setDefaultLocale('fr');
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 function JourneyOptionDetailDate() {
-    const [startDate, setStartDate] = useState(null);
+    const [startDate, setStartDate] = useState (new Date());
    
   return (
     <DatePicker
