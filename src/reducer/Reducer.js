@@ -5,7 +5,7 @@ const initialState = {
   arrivalLongitude: null, //x.coord.lon
   bypassLines: [],
   bypassModes: [],
-  date: "",
+  date: new Date().toISOString().split("T")[0],
   dateType: "DEPARTURE",
   departure: "",
   departureId: "",
@@ -77,6 +77,12 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       dateType: action.dateType
+    };
+  }
+  if (action.type === "ADD_DATE") {
+    return {
+      ...state,
+      date: action.date
     };
   }
   return state;
