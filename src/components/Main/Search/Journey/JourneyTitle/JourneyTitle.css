@@ -1,0 +1,12 @@
+.firstSpan{
+    font-size: 24px;
+    font-family: "Avenir LT Std 35 Light", Arial, Helvetica, sans-serif;
+}
+.secondSpan{
+    font-family: "Avenir LT Std 35 Light", Arial, Helvetica, sans-serif;
+}
+@media screen and (max-width: 1023px) {
+    .secondSpan{
+        display: none;
+    }
+  }

@@ -5,11 +5,9 @@ import Input2 from "./Input2";
 
 function JourneyInput() {
   return (
-    <div className="row">
-      <div className="col-sm-12 journey-input">
-        <Input1 />
-        <Input2 />
-      </div>
+    <div className="row pb-4">
+      <Input1 />
+      <Input2 />
     </div>
   );
 }

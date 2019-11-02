@@ -45,7 +45,7 @@ class DetailsTime extends React.Component {
     const { time } = this.props;
     return (
       <>
-        <div className="clock">
+        <div className="clock col-lg-4 col-6">
           <input
             className="input-text"
             type="text"
@@ -71,7 +71,7 @@ class DetailsTime extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    time: state.time
+    time: state.reducerRequest.time
   };
 };
 const mapDispatchToProps = dispatch => {
