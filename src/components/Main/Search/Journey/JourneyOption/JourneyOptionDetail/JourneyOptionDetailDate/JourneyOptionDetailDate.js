@@ -19,15 +19,17 @@ function JourneyOptionDetailDate() {
   };
 
   return (
-    <DatePicker
-      locale="fr"
-      selected={startDate}
-      onChange={date => changeDate(date)}
-      minDate={new Date()}
-      maxDate={addDays(new Date(), 60)}
-      placeholderText="Select a date between today and 5 days in the future"
-      dateFormat="dd/MM/yyyy"
-    />
+    <div className="col-lg-4 col-6 d-flex">
+      <DatePicker
+        locale="fr"
+        selected={startDate}
+        onChange={date => changeDate(date)}
+        minDate={new Date()}
+        maxDate={addDays(new Date(), 60)}
+        placeholderText="Select a date between today and 5 days in the future"
+        dateFormat="dd/MM/yyyy"
+      />
+    </div>
   );
 }
 export default connect(

@@ -47,9 +47,14 @@ ul {
     content: ' • ';
     font-size: 1.3rem;
     color: #ccc;
+    position: relative;
+    top: 3px;
 }
 .result-roadmap span:last-child::after {
     content: '';
+}
+.result-roadmap img {
+    width: 60px;
 }
 /***************/
 .result-details {

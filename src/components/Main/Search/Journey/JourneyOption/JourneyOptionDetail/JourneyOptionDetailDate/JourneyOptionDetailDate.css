@@ -69,6 +69,7 @@
   display: inline-block;
   padding: 0;
   border: 0;
+  height: 100%;
 }
 
 .react-datepicker {
@@ -557,20 +558,18 @@
 
 .react-datepicker__input-container {
   position: relative;
-  display: inline-block;
-  
+  display: flex;
+  height: 100%;
   
 }
 
 .react-datepicker__input-container input{
-
-    width: 115%;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   border: 2px solid #0088ce;
   -moz-outline-radius: 5px;
-  text-indent: 5%;
-    
     text-align: center;
+    width: 100%;
+    font-size: 1.3rem;
 }
 .react-datepicker-ignore-onclickoutside {
     border:none;

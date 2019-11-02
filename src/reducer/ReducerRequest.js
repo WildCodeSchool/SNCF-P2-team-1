@@ -1,4 +1,4 @@
-const initialState = {
+const requestInfos = {
   arrival: "", //x.name
   arrivalId: "", //x.id
   arrivalLatitude: null, //x.coord.lat
@@ -18,7 +18,7 @@ const initialState = {
   })}`
 };
 
-const reducer = (state = initialState, action) => {
+const reducerRequest = (state = requestInfos, action) => {
   if (action.type === "ADD_TIME") {
     return {
       ...state,
@@ -88,13 +88,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export default reducer;
-
-/* "id": "stop_area:DUA:SA:8775804",
-              "placeType": "StopArea",
-              "name": "NANTERRE VILLE (Nanterre)",
-              "shortName": "NANTERRE VILLE",
-              "coord": {
-                  "lat": 48.895506,
-                  "lon": 2.195916
-              }, */
+export default reducerRequest;
