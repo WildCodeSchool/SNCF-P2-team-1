@@ -4,12 +4,12 @@
   margin-bottom: 1em;
 }
 .tab-content .tab-pane {
-    background-color: #fff;
-    -webkit-border-radius: .3em;
-    -moz-border-radius: .3em;
-    border-radius: .3em;
-    padding: 1em;
-    min-height: 10em;
+  background-color: #fff;
+  -webkit-border-radius: .3em;
+  -moz-border-radius: .3em;
+  border-radius: .3em;
+  padding: 1em;
+  min-height: 12em;
 }
 .example-appear {
   opacity: 0.01;
