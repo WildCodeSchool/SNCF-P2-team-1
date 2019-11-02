@@ -14,12 +14,8 @@ function ResultCard() {
       <div className="row">
         <div className="col-12 result-card">
           {result.journeys.map((journey, index) => {
-            const timeDuration = journey.totalDuration
-              .replace('PT', '')
-              .toLowerCase();
-            const timeWalkingDuration = journey.walkingDuration
-              .replace('PT', '')
-              .toLowerCase();
+            const timeDuration = journey.totalDuration.toLowerCase();
+            const timeWalkingDuration = journey.walkingDuration.toLowerCase();
             return (
               <ul key={index}>
                 <li>
@@ -39,9 +35,21 @@ function ResultCard() {
                     </li>
                   </ul>
                   <ul className="result-duration">
-                    <li>{timeDuration.replace('m', ' min ')}</li>
+                    <li>
+                      {timeDuration.indexOf('M') + 1 === timeDuration.length
+                        ? timeDuration.replace('PT', '')
+                        : timeDuration
+                            .slice(2, journey.totalDuration.indexOf('M'))
+                            .replace('h', ' h ')}{' '}
+                      min
+                    </li>
                     <li className="walkingDuration">
-                      dont {timeWalkingDuration.replace('m', ' min ')}
+                      dont{' '}
+                      {timeWalkingDuration.slice(
+                        2,
+                        journey.walkingDuration.indexOf('M')
+                      )}{' '}
+                      min
                       <p>de marche</p>
                     </li>
                   </ul>
