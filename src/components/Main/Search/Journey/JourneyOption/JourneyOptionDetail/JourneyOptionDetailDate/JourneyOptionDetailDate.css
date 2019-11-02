@@ -564,8 +564,8 @@
 }
 
 .react-datepicker__input-container input{
-  border-radius: 0.5rem;
-  border: 2px solid #0088ce;
+  border-radius: 5px;
+  border: 1px solid #0088ce;
   -moz-outline-radius: 5px;
     text-align: center;
     width: 100%;

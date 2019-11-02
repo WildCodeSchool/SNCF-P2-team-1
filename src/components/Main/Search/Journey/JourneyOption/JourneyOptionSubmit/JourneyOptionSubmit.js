@@ -1,6 +1,6 @@
-import React from "react";
-import axios from "axios";
-import { connect, useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import axios from 'axios';
+import {connect, useSelector, useDispatch} from 'react-redux';
 
 function JourneyOptionSubmit() {
   const dataRequest = useSelector(state => state.reducerRequest);
@@ -8,28 +8,28 @@ function JourneyOptionSubmit() {
 
   const getJourney = () => {
     dispatch({
-      type: "LOADING",
-      showLoading: true
+      type: 'LOADING',
+      showLoading: true,
     });
     dispatch({
-      type: "RECEIVE_DATA",
-      showLoading: true
+      type: 'RECEIVE_DATA',
+      showLoading: true,
     });
     axios
-      .post("/api/itinerary/search", dataRequest)
+      .post('/api/itinerary/search', dataRequest)
       .then(function(response) {
         /* console.log(response.data.journeys); */
         dispatch({
-          type: "ADD_RESULTS_REQUEST",
-          resultsJourneys: response.data
+          type: 'ADD_RESULTS_REQUEST',
+          resultsJourneys: response.data,
         });
         dispatch({
-          type: "RECEIVE_DATA",
-          receiveData: true
+          type: 'RECEIVE_DATA',
+          receiveData: true,
         });
         dispatch({
-          type: "LOADING",
-          showLoading: false
+          type: 'LOADING',
+          showLoading: false,
         });
       })
       .catch(function(error) {
@@ -41,7 +41,7 @@ function JourneyOptionSubmit() {
     <div className="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end ">
       <button
         type="submit"
-        className="btn btn-primary"
+        className="btn btn-primary my-3"
         onClick={() => getJourney()}
       >
         RECHERCHER
