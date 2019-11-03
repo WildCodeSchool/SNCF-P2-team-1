@@ -55,20 +55,43 @@
   border: 1px solid #0088ce;
   background-color: #fff;
   padding: 0.5rem 0;
-  max-height: 10em;
+  max-height: 160px;
+  overflow-y: scroll;
+  width: 6rem;
+  font-size: 0.8rem;
+  position: absolute;
+  z-index: 1200;
+ /*
+ max-height: 10em;
   overflow-y: scroll;
   width: 7em;
   font-size: 1em;
-  position: absolute;
-  z-index: 1100;
+  */
+}
+.hoursUl::-webkit-scrollbar {
+  -webkit-appearance: none;
+  padding-right: 1px;
+}
+.hoursUl::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+.hoursUl::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, .5);
+  height: 30px;
+  border:none
 }
 .hoursLi {
   display: block;
   background-color: #fff;
   color: #0088ce;
+  min-height: 2.4rem;
+  padding: 1rem;
+  /*
   min-height: 1em;
   line-height: 1.5em;
   padding: .5em 1em;
+  */
 }
 .selected {
   font-weight: bold;
