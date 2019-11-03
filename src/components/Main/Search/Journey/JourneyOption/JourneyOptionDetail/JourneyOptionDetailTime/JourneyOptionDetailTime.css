@@ -85,13 +85,9 @@
   display: block;
   background-color: #fff;
   color: #0088ce;
-  min-height: 2.4rem;
-  padding: 1rem;
-  /*
   min-height: 1em;
-  line-height: 1.5em;
   padding: .5em 1em;
-  */
+  line-height: 1.5em;
 }
 .selected {
   font-weight: bold;

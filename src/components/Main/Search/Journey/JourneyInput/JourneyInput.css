@@ -24,8 +24,6 @@
 .form-input::placeholder {
   text-indent: 5%;
 }
-
-
 .switch-input {
   cursor: pointer;
   width: 50px;
@@ -38,11 +36,13 @@
 
 .UlSuggestions {
   position: absolute;
-  height: 100px;
+  margin-top: .25em;
+  width: 96%;
+  height: 158px;
   overflow-y: scroll;
   background: white;
   list-style: none;
-  border: 2px solid #0088ce;
+  border: 1px solid #0088ce;
   color:#0088ce;
   border-radius: 5px;
   padding:0;
@@ -60,11 +60,12 @@
   background-color: rgba(0, 0, 0, .5);
   height: 30px;
 }
-.LiSuggestions{
-  padding-left: 5px;
+.LiSuggestions {
+  padding: .5em;
   cursor: pointer;
-  border: solid rgb(207, 204, 204) 1px;
+  border-bottom: solid rgb(207, 204, 204) 1px;
 }
+.LiSuggestions:last-child { border: 0; ;}
 .LiSuggestions:hover{
   color: white;
   background-color: #0088ce;
