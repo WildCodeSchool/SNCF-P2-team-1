@@ -4,13 +4,15 @@ import JourneyOptionDetailDate from './JourneyOptionDetailDate/JourneyOptionDeta
 import JourneyOptionDetailTime from './JourneyOptionDetailTime/JourneyOptionDetailTime';
 
 function JourneyOptionDetail() {
-    return(
-        <div className='col-12 col-lg-6 d-flex justify-content-between'>
-            <JourneyOptionDetailSelect />
-            <JourneyOptionDetailDate />
-            <JourneyOptionDetailTime />
-        </div>
-    )
+  return (
+    <div className="col-12 col-lg-6">
+      <div className="row ">
+        <JourneyOptionDetailSelect />
+        <JourneyOptionDetailDate />
+        <JourneyOptionDetailTime />
+      </div>
+    </div>
+  );
 }
 
 export default JourneyOptionDetail;

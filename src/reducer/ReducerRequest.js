@@ -1,12 +1,12 @@
-const initialState = {
+const requestInfos = {
   arrival: "", //x.name
   arrivalId: "", //x.id
   arrivalLatitude: null, //x.coord.lat
   arrivalLongitude: null, //x.coord.lon
   bypassLines: [],
   bypassModes: [],
-  date: "",
-  dateType: "",
+  date: new Date().toISOString().split("T")[0],
+  dateType: "DEPARTURE",
   departure: "",
   departureId: "",
   departureLatitude: null, //int
@@ -18,7 +18,7 @@ const initialState = {
   })}`
 };
 
-const reducer = (state = initialState, action) => {
+const reducerRequest = (state = requestInfos, action) => {
   if (action.type === "ADD_TIME") {
     return {
       ...state,
@@ -73,17 +73,19 @@ const reducer = (state = initialState, action) => {
       departureLongitude: action.departureLongitude
     };
   }
-
+  if (action.type === "ADD_DATETYPE") {
+    return {
+      ...state,
+      dateType: action.dateType
+    };
+  }
+  if (action.type === "ADD_DATE") {
+    return {
+      ...state,
+      date: action.date
+    };
+  }
   return state;
 };
 
-export default reducer;
-
-/* "id": "stop_area:DUA:SA:8775804",
-              "placeType": "StopArea",
-              "name": "NANTERRE VILLE (Nanterre)",
-              "shortName": "NANTERRE VILLE",
-              "coord": {
-                  "lat": 48.895506,
-                  "lon": 2.195916
-              }, */
+export default reducerRequest;

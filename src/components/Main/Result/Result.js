@@ -1,12 +1,25 @@
-import React from 'react';
-import ResultCard from './ResultCard/ResultCard';
+import React from "react";
+import ResultCard from "./ResultCard/ResultCard";
+import { connect, useSelector } from "react-redux";
+import LoadingComponent from "./Cliploader";
 
 function Result() {
+  const receiveData = useSelector(state => state.reducerGlobal.receiveData);
+  const showLoading = useSelector(state => state.reducerGlobal.showLoading);
+
   return (
     <>
-      <ResultCard />
+      {showLoading ? (
+        <div>
+          <LoadingComponent />
+        </div>
+      ) : null}
+      {receiveData && <ResultCard />}
     </>
   );
 }
 
-export default Result;
+export default connect(
+  null,
+  null
+)(Result);
