@@ -70,7 +70,7 @@ class Input2 extends React.Component {
   render() {
     const { text } = this.state;
     return (
-      <div className="test col-lg-6 col-sm-12">
+      <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Aller à</label>
         <input
           value={text}

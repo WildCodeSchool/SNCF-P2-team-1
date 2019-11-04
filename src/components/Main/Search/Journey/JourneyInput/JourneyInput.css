@@ -77,9 +77,6 @@
     flex-direction: column;
     justify-content: space-around;
   }
-  .test {
-    width: 100%;
-  }
   .form-input-go-from {
     margin-bottom: 10px;
   }
