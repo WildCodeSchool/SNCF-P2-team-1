@@ -568,9 +568,10 @@
   border-radius: 5px;
   border: 1px solid #0088ce;
   -moz-outline-radius: 5px;
-    text-align: center;
-    width: 100%;
-    font-size: 1.3rem;
+  text-align: left;
+  width: 100%;
+  font-size: 1.3rem;
+  padding: .5em 1em;
 }
 .react-datepicker-ignore-onclickoutside {
     border:none;
