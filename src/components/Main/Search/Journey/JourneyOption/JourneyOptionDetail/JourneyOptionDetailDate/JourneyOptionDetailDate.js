@@ -19,7 +19,7 @@ function JourneyOptionDetailDate() {
   };
 
   return (
-    <div className="col-lg-4 col-6 d-flex">
+    <div className="col-lg-4 col-6 my-3">
       <DatePicker
         locale="fr"
         selected={startDate}
