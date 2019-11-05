@@ -1,0 +1,11 @@
+.detail-card-recap {
+    text-align: center;
+    border: 1px solid #afafaf;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em auto;
+
+}
+.detail-card-recap strong {
+    font-weight: 500;
+}

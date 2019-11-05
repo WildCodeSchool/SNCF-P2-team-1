@@ -3,6 +3,7 @@ import './Main.css';
 import Search from './Search/Search';
 import Banner from './Banner/Banner';
 import Result from './Result/Result';
+import DetaiCard from './Result/DetailCard/DetaiCard';
 
 function Main() {
   return (
@@ -10,6 +11,7 @@ function Main() {
       <Banner />
       <Search />
       <Result />
+      <DetaiCard />
     </main>
   );
 }
