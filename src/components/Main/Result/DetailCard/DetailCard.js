@@ -12,7 +12,7 @@ const DetailCard = ({ match }) => {
     history.push("/");
   }
   return (
-    <div className="container">
+    <div className="container container-DetailCard">
       <div className="row">
         <p className="returnToResults" onClick={handleClick}>
           <i>
