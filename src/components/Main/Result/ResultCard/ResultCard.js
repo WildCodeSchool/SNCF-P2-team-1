@@ -1,11 +1,12 @@
-import React from 'react';
-import Moment from 'react-moment';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faWalking, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
-import {connect, useSelector} from 'react-redux';
-import './ResultCard.css';
-import logoRER_A from '../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg';
-import logoRER_B from '../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg';
+import React from "react";
+import Moment from "react-moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWalking, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { connect, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import "./ResultCard.css";
+import logoRER_A from "../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg";
+import logoRER_B from "../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg";
 
 function ResultCard() {
   const result = useSelector(state => state.reducerGlobal.resultsJourneys);
@@ -36,19 +37,19 @@ function ResultCard() {
                   </ul>
                   <ul className="result-duration">
                     <li>
-                      {timeDuration.indexOf('M') + 1 === timeDuration.length
-                        ? timeDuration.replace('PT', '')
+                      {timeDuration.indexOf("M") + 1 === timeDuration.length
+                        ? timeDuration.replace("PT", "")
                         : timeDuration
-                            .slice(2, journey.totalDuration.indexOf('M'))
-                            .replace('h', ' h ')}{' '}
+                            .slice(2, journey.totalDuration.indexOf("M"))
+                            .replace("h", " h ")}{" "}
                       min
                     </li>
                     <li className="walkingDuration">
-                      dont{' '}
+                      dont{" "}
                       {timeWalkingDuration.slice(
                         2,
-                        journey.walkingDuration.indexOf('M')
-                      )}{' '}
+                        journey.walkingDuration.indexOf("M")
+                      )}{" "}
                       min
                       <p>de marche</p>
                     </li>
@@ -59,8 +60,8 @@ function ResultCard() {
                     if (transport.transport) {
                       if (transport.transport.line) {
                         if (
-                          transport.transport.mode === 'RER' &&
-                          transport.transport.line.label === 'A'
+                          transport.transport.mode === "RER" &&
+                          transport.transport.line.label === "A"
                         ) {
                           return (
                             <span key={index}>
@@ -69,8 +70,8 @@ function ResultCard() {
                           );
                         }
                         if (
-                          transport.transport.mode === 'RER' &&
-                          transport.transport.line.label === 'B'
+                          transport.transport.mode === "RER" &&
+                          transport.transport.line.label === "B"
                         ) {
                           return (
                             <span key={index}>
@@ -81,17 +82,17 @@ function ResultCard() {
 
                         return (
                           <span key={index}>
-                            {' '}
-                            {transport.transport.mode}{' '}
+                            {" "}
+                            {transport.transport.mode}{" "}
                             {transport.transport.line.label}
                           </span>
                         );
                       }
-                      if (transport.transport.mode === 'WALKING') {
+                      if (transport.transport.mode === "WALKING") {
                         return (
                           <span className="icon" key={index}>
-                            {' '}
-                            <FontAwesomeIcon icon={faWalking} />{' '}
+                            {" "}
+                            <FontAwesomeIcon icon={faWalking} />{" "}
                           </span>
                         );
                       }
@@ -105,9 +106,11 @@ function ResultCard() {
                 <li>
                   <ul>
                     <li className="result-price">
-                      {journey.price ? journey.price / 100 + '0 €' : '-'}
+                      {journey.price ? journey.price / 100 + "0 €" : "-"}
                     </li>
-                    <li className="result-details">Détails</li>
+                    <li className="result-details">
+                      <Link to={`/details${index}`}>Détails</Link>
+                    </li>
                   </ul>
                 </li>
               </ul>
