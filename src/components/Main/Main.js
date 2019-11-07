@@ -3,6 +3,7 @@ import "./Main.css";
 import Search from "./Search/Search";
 import Banner from "./Banner/Banner";
 import Result from "./Result/Result";
+import ResultDetailCard from "./Result/ResultCard/ResultCardDetail/ResulCardDetail";
 import DetailCard from "./Result/DetailCard/DetailCard";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -17,7 +18,9 @@ function Main() {
           <Route path="/details:index" component={DetailCard} />
         </Switch>
       </BrowserRouter>
+      <ResultDetailCard/>
     </main>
+
   );
 }
 
