@@ -14,6 +14,9 @@ function JourneyOptionDetailDate() {
   const dispatch = useDispatch();
 
   const changeDate = date => {
+    if (!date) {
+      return;
+    }
     dispatch({ type: "ADD_DATE", date: date.toISOString().split("T")[0] });
     setStartDate(date);
   };
@@ -26,7 +29,7 @@ function JourneyOptionDetailDate() {
         onChange={date => changeDate(date)}
         minDate={new Date()}
         maxDate={addDays(new Date(), 60)}
-        placeholderText="Select a date between today and 5 days in the future"
+        placeholderText="Choissisez une date"
         dateFormat="dd/MM/yyyy"
       />
     </div>

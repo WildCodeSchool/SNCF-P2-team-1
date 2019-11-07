@@ -4,6 +4,7 @@ class LiDetailsTime extends React.Component {
   constructor(props) {
     super(props);
     this.myRefUl = React.createRef();
+    console.log(props);
   }
 
   renderLi = () => {

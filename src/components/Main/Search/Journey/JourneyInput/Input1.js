@@ -73,10 +73,10 @@ class Input1 extends React.Component {
     }
     return (
       <ul className="UlSuggestions">
-        {suggestions.map(x => (
+        {suggestions.map((x, index) => (
           <li
             className="LiSuggestions"
-            key={x.shortName}
+            key={index}
             onClick={() => this.suggestionsSelected(x)}
           >
             {x.name}
