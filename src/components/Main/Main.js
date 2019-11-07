@@ -3,6 +3,7 @@ import "./Main.css";
 import Search from "./Search/Search";
 import Banner from "./Banner/Banner";
 import Result from "./Result/Result";
+import ResultDetailCard from "./Result/ResultCard/ResultCardDetail/ResulCardDetail";
 import DetailCard from "./Result/DetailCard/DetailCard";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -15,7 +16,9 @@ function Main() {
         <Route exact path="/" component={Result} />
         <Route exact path="/details:index" component={DetailCard} />
       </BrowserRouter>
+      <ResultDetailCard/>
     </main>
+
   );
 }
 
