@@ -1,0 +1,49 @@
+.detail-card-result {
+    border: 1px solid #afafaf;
+    border-radius: 1em;
+    padding: 1.5em 1.5em .5em 1.5em ;
+    margin: 1em auto 2em;
+    color: #545454;
+    font-family: "Avenir LT Std 35 Light", Arial, Helvetica, sans-serif;
+}
+.detail-result { width: 100%; }
+.totalDuration i { 
+    color: #0088ce;
+    font-size: 1.2em;
+}
+.totalDuration strong {
+    font-weight: normal;
+    font-size: 1.2em;
+    color: #1f1f1f;
+}
+.zoneTarif, .direction, .detail-result .time li:nth-child(2) { font-size: .875em; }
+.detail-result .time li { line-height: 1.6em;}
+.detail-result li { padding: 1em 0em; }
+.detail-result li:last-child { padding-bottom: 0;}
+.duration { color: #afafaf;}
+.time {
+    min-width: 4em;
+}
+.transportColor {
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+}
+.transportColor li { flex: 1; }
+.transportColor li:last-child span {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: #fff;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+}
+@media (min-width: 768px) { 
+    .detail-result {
+        margin: 0 auto;
+        width: 50%;
+    }
+}

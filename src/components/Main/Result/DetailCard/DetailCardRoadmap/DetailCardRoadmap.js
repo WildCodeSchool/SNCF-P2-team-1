@@ -1,9 +1,8 @@
-import React from "react";
-import Moment from "react-moment";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
-function DetailCardRoadmap({ match }) {
+function DetailCardRoadmap({match}) {
   let history = useHistory();
   //Data Itineraire
   const data = useSelector(
@@ -13,13 +12,13 @@ function DetailCardRoadmap({ match }) {
   );
   //retourne a l'acceuil si aucune données reçus
   if (!data) {
-    history.push("/");
+    history.push('/');
     return null;
   }
 
   return (
     <div className="col-12 detail-card-result">
-      TEST ITINERAIRE {data.sections[0].departure.label} to{" "}
+      TEST ITINERAIRE {data.sections[0].departure.label} to{' '}
       {data.sections[0].arrival.label}
     </div>
   );
