@@ -413,24 +413,27 @@ function ResultCardDetail() {
   };
   const dataDetails = data.journeys[0].sections;
 
-//   const dictonary = {
-//     METRO: "Ligne",
-//     BUS: "Bus",
-//     RER: "Ligne"
-//   };
+  //   const dictonary = {
+  //     METRO: "Ligne",
+  //     BUS: "Bus",
+  //     RER: "Ligne"
+  //   };
 
-//   {dictonary[transport.mode]}
+  //   {dictonary[transport.mode]}
 
   return (
     <div className="col-12 detail-card-result">
-
-<div>Zone {data.journeys[0].zones.min} - {data.journeys[0].zones.max}</div>
+      <div>
+        Zone {data.journeys[0].zones.min} - {data.journeys[0].zones.max}
+      </div>
       {dataDetails
         .filter(data => _get(data, "departure", false))
         .map(x => {
           return (
             <>
-              <div>{x.totalDuration.slice(2, x.totalDuration.length - 1)} minutes</div>
+              <div>
+                {x.totalDuration.slice(2, x.totalDuration.length - 1)} minutes
+              </div>
               <div>{x.departure.label}</div>
               <div>{x.direction}</div>
               <div>{x.arrival.label}</div>
