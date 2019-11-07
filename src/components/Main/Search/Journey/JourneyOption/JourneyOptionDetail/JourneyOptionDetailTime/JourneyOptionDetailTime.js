@@ -35,13 +35,37 @@ class DetailsTime extends React.Component {
   };
   onTextChange = e => {
     const value = e.target.value;
-
     this.props.newTime(value);
   };
   focusTextInput = () => {
     this.myRef.current.focus();
   };
 
+  controlTextOnInput = e => {
+    const ref = this.myRef.current;
+    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+    console.log(e.target);
+    //si on clique ailleur et que le regex nest pas valide, la valeur devient l'heure actuelle
+    if (
+      !ref.contains(e.target) &&
+      !regex.test(ref.defaultValue) &&
+      !this.state.isDisplay
+    ) {
+      this.props.newTime(
+        `${new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit"
+        })}`
+      );
+    }
+  };
+
+  componentDidMount() {
+    document.addEventListener("click", this.controlTextOnInput);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("click", this.controlTextOnInput);
+  }
   render() {
     const { time } = this.props;
     return (
@@ -63,6 +87,7 @@ class DetailsTime extends React.Component {
               text={this.props.time}
               changeDisplay={this.changeDisplay}
               selectedText={this.selectedText}
+              controlTextOnInput={this.controlTextOnInput}
             />
           )}
         </div>

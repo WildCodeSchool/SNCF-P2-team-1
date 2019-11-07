@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { connect, useSelector, useDispatch } from "react-redux";
 
@@ -13,7 +13,7 @@ function JourneyOptionSubmit() {
     });
     dispatch({
       type: "RECEIVE_DATA",
-      showLoading: true
+      receiveData: false
     });
     axios
       .post("/api/itinerary/search", dataRequest)
