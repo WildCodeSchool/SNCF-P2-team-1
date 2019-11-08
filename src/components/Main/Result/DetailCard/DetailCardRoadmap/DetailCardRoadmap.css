@@ -17,9 +17,13 @@
     color: #1f1f1f;
 }
 .zoneTarif, .direction, .detail-result .time li:nth-child(2) { font-size: .875em; }
-.detail-result .time li { line-height: 1.6em; }
+.detail-result .time li { line-height: 1.6em;}
+.detail-result li { padding: 1em 0em; }
+.detail-result li:last-child { padding-bottom: 0;}
 .duration { color: #afafaf;}
-.time { min-width: 4em; }
+.time {
+    min-width: 4em;
+}
 .transportColor {
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
@@ -29,15 +33,10 @@
 }
 .transportColor li { flex: 1; }
 .transportColor li:first-child {
-    padding-top: 0;
     text-align: center;
     color: #fff;
 }
-.transportColor li:last-child {
-    display: flex;
-    align-items: flex-end;
-}
-.transportColor .whiteCircle {
+.transportColor li:last-child span {
     display: inline-block;
     width: 1em;
     height: 1em;

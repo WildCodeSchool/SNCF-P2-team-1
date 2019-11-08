@@ -2,7 +2,7 @@ import React from 'react';
 import _get from 'lodash/get';
 import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWalking, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faWalking, faClock, faTrain, faBus } from "@fortawesome/free-solid-svg-icons";
 import './ResultCardDetail.css';
 
 function ResultCardDetail() {
@@ -30,34 +30,39 @@ function ResultCardDetail() {
                 margin:"1em",
                 padding: ".5em"
               }
+              const iconTransport = detail.transport.mode;
               return (
-                <div key={index} className="detail-result my-4">
-                  <div className="d-flex my-3">
-                    <ul className='time'>
-                      <li>
-                        <Moment format='HH:mm'>{detail.departure.dateTime}</Moment>
-                      </li>
-                      <li className='duration'>
-                      {detail.totalDuration.slice(2, detail.totalDuration.length - 1).toLowerCase().replace('h', ' h ')} min
-                      </li>
-                      <li>
-                        <Moment format='HH:mm'>{detail.arrival.dateTime}</Moment>
-                      </li>
-                    </ul>
-                    <ul className="transportColor" style={transportColor}>
-                      <li></li>
-                      <li></li>
-                      <li><span></span></li>
-                    </ul>
-                    <ul className='detail'>
-                      <li>
-                        <p className="my-0">{detail.departure.label}</p>
-                        <span className='direction'>dir. {detail.direction}</span>
-                      </li>
-                      <li></li>
-                      <li>{detail.arrival.label}</li>
-                    </ul>
-                  </div>
+                <div key={index} className="detail-result d-flex my-4">
+                  <ul className='time'>
+                    <li>
+                      <Moment format='HH:mm'>{detail.departure.dateTime}</Moment>
+                    </li>
+                    <li className='duration'>
+                    {detail.totalDuration.slice(2, detail.totalDuration.length - 1).toLowerCase().replace('h', ' h ')} min
+                    </li>
+                    <li>
+                      <Moment format='HH:mm'>{detail.arrival.dateTime}</Moment>
+                    </li>
+                  </ul>
+                  <ul className="transportColor" style={transportColor}>
+                    <li>
+                      {
+                        iconTransport === "TRAIN" ? 
+                        <i><FontAwesomeIcon icon={faTrain} /></i> : 
+                        <i><FontAwesomeIcon icon={faBus} /></i>
+                      }
+                    </li>
+                    <li></li>
+                    <li><span className='whiteCircle'></span></li>
+                  </ul>
+                  <ul className='detail'>
+                    <li>
+                      <p className="my-0">{detail.departure.label}</p>
+                      <span className='direction'>dir. {detail.direction}</span>
+                    </li>
+                    <li></li>
+                    <li>{detail.arrival.label}</li>
+                  </ul>
                 </div>
               );
             })}
