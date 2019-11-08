@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import {connect, useSelector, useDispatch} from 'react-redux';
+import React, { useEffect } from "react";
+import axios from "axios";
+import { connect, useSelector, useDispatch } from "react-redux";
 
 function JourneyOptionSubmit() {
   const dataRequest = useSelector(state => state.reducerRequest);
@@ -8,28 +8,28 @@ function JourneyOptionSubmit() {
 
   const getJourney = () => {
     dispatch({
-      type: 'LOADING',
-      showLoading: true,
+      type: "LOADING",
+      showLoading: true
     });
     dispatch({
-      type: 'RECEIVE_DATA',
-      showLoading: true,
+      type: "RECEIVE_DATA",
+      receiveData: false
     });
     axios
-      .post('/api/itinerary/search', dataRequest)
+      .post("/api/itinerary/search", dataRequest)
       .then(function(response) {
         /* console.log(response.data.journeys); */
         dispatch({
-          type: 'ADD_RESULTS_REQUEST',
-          resultsJourneys: response.data,
+          type: "ADD_RESULTS_REQUEST",
+          resultsJourneys: response.data
         });
         dispatch({
-          type: 'RECEIVE_DATA',
-          receiveData: true,
+          type: "RECEIVE_DATA",
+          receiveData: true
         });
         dispatch({
-          type: 'LOADING',
-          showLoading: false,
+          type: "LOADING",
+          showLoading: false
         });
       })
       .catch(function(error) {
