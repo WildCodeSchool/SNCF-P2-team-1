@@ -22,7 +22,6 @@ function DetailCardRoadmap({match}) {
     return null;
   }
   const dataDetails = data.sections;
-  console.log(data.totalDuration);
 
   return (
     <div className="col-12 py-0 px-0">
@@ -51,8 +50,9 @@ function DetailCardRoadmap({match}) {
             min
           </span>
           <div className="my-2 zoneTarif">
-            Zone {data.zones.min} - {data.zones.max} | Tarifs :{' '}
-            {data.price ? data.price / 100 : ' - '}
+            Zone {data.zones ? data.zones.min : ' - '} -{' '}
+            {data.zones ? data.zones.max : ' '} | Tarifs :{' '}
+            {data.price ? data.price / 100 : ' '}
           </div>
           {dataDetails
             .filter(detail => _get(detail, 'departure', false))
