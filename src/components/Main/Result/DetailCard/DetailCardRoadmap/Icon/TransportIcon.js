@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrain, faWalking} from '@fortawesome/free-solid-svg-icons';
+import {faTrain} from '@fortawesome/free-solid-svg-icons';
 import Bus from '../img/bus.svg';
 import Metro from '../img/Metro.svg';
 import RER from '../img/RER.svg';
@@ -20,11 +20,7 @@ function TransportIcon(props) {
     case 'TRAM':
       return <img src={TRAM} alt="TRAM" />;
     case 'WALKING':
-      return (
-        <i className="walking">
-          <FontAwesomeIcon icon={faWalking} />
-        </i>
-      );
+      return <i className="walking">{''}</i>;
     default:
       return (
         <i>

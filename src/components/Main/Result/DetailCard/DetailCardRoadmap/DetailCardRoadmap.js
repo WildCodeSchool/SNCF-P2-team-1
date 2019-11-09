@@ -51,7 +51,7 @@ function DetailCardRoadmap({match}) {
           </span>
           <div className="my-2 zoneTarif">
             Zone {data.zones ? data.zones.min : ' '} -{' '}
-            {data.zones ? data.zones.max : ' '} | Tarifs :{' '}
+            {data.zones ? data.zones.max : ' '} | Tarifs :{' - '}
             {data.price ? data.price / 100 : ' '}
           </div>
           {dataDetails
@@ -87,8 +87,17 @@ function DetailCardRoadmap({match}) {
                     <li>
                       <TransportIcon icon={iconTransport} />
                     </li>
-                    <li></li>
+                    <li
+                      className={
+                        detail.transport.mode === 'WALKING' ? 'dotted' : ''
+                      }
+                    ></li>
                     <li>
+                      {detail.transport.mode === 'WALKING' ? (
+                        <i className="walking"></i>
+                      ) : (
+                        ''
+                      )}
                       <span className="whiteCircle"></span>
                     </li>
                   </ul>
