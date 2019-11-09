@@ -8,9 +8,6 @@ import METRO from '../img/Metro.svg.png';
 const fontAwesomeIcons = {
   TRAIN: faTrain,
   BUS: faBus,
-  RER: faBus,
-  TRAM: faBus,
-  METRO: faBus,
 };
 
 function TransportIcon(props) {
