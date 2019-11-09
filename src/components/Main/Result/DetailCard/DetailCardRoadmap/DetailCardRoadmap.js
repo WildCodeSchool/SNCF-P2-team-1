@@ -96,7 +96,13 @@ function DetailCardRoadmap({match}) {
                       <p className="my-0">{detail.departure.label}</p>
                       <span className="direction">dir. {detail.direction}</span>
                     </li>
-                    <li></li>
+                    <li>
+                      {detail.transport.mode === 'WALKING' ? (
+                        <FontAwesomeIcon icon={faWalking} />
+                      ) : (
+                        ''
+                      )}
+                    </li>
                     <li>{detail.arrival.label}</li>
                   </ul>
                 </div>

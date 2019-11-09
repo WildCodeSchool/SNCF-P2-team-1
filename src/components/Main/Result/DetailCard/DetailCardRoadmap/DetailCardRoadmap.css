@@ -54,6 +54,9 @@
     border: 2px solid;
     border-radius: 1em;
 }
+.transportColor li i.walking { 
+    border: 0;
+}
 .transportColor li img {
     width: 1.5em;
 }
