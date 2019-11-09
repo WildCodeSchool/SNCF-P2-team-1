@@ -13,6 +13,7 @@ class Input1 extends React.Component {
       text: "",
       inputvalue: false
     };
+    this.myRef = React.createRef();
   }
 
   getPlaces = y => {
@@ -72,7 +73,7 @@ class Input1 extends React.Component {
       return false;
     }
     return (
-      <ul className="UlSuggestions">
+      <ul className="UlSuggestions" ref={this.myRef}>
         {suggestions.map((x, index) => (
           <li
             className="LiSuggestions"
