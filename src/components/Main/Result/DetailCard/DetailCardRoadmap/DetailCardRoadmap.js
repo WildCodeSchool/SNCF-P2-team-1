@@ -22,6 +22,7 @@ function DetailCardRoadmap({match}) {
     return null;
   }
   const dataDetails = data.sections;
+  console.log(data.totalDuration);
 
   return (
     <div className="col-12 py-0 px-0">
@@ -33,7 +34,7 @@ function DetailCardRoadmap({match}) {
           <strong>
             {' '}
             {data.totalDuration
-              .slice(2, data.totalDuration.length - 1)
+              .slice(2, data.totalDuration.indexOf('M'))
               .toLowerCase()
               .replace('h', ' h ')}{' '}
             min{' '}
