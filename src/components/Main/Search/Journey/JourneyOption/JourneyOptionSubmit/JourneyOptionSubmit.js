@@ -1,12 +1,41 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { connect, useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
 
 function JourneyOptionSubmit() {
   const dataRequest = useSelector(state => state.reducerRequest);
   const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const cssAlert = {
+    color: "white"
+  };
 
   const getJourney = () => {
+    if (dataRequest.departure) {
+      console.log(dataRequest.departure);
+    } else {
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: true
+      });
+      alert.error(
+        <div style={cssAlert}>Départ: veuillez préciser votre demande</div>
+      );
+      return;
+    }
+    if (dataRequest.arrival) {
+      console.log(dataRequest.arrival);
+    } else {
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorArrival: true
+      });
+      alert.error("Arrivée: veuillez préciser votre demande");
+      return;
+    }
+
     dispatch({
       type: "LOADING",
       showLoading: true

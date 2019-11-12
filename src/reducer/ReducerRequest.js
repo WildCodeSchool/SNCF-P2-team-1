@@ -7,7 +7,7 @@ const requestInfos = {
   bypassModes: [],
   date: new Date().toISOString().split("T")[0],
   dateType: "DEPARTURE",
-  departure: "",
+  departure: null,
   departureId: "",
   departureLatitude: null, //int
   departureLongitude: null, //int
@@ -83,6 +83,24 @@ const reducerRequest = (state = requestInfos, action) => {
     return {
       ...state,
       date: action.date
+    };
+  }
+  if (action.type === "EMPTY_DEPARTURE") {
+    return {
+      ...state,
+      departure: action.empty,
+      departureId: action.empty,
+      departureLatitude: action.empty,
+      departureLongitude: action.empty
+    };
+  }
+  if (action.type === "EMPTY_ARRIVAL") {
+    return {
+      ...state,
+      arrival: action.empty,
+      arrivalId: action.empty,
+      arrivalLatitude: action.empty,
+      arrivalLongitude: action.empty
     };
   }
   return state;

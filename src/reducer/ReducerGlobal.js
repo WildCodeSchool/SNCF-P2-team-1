@@ -1,7 +1,9 @@
 const globalInfos = {
   receiveData: false,
   showLoading: false,
-  resultsJourneys: null
+  resultsJourneys: null,
+  errorDeparture: false,
+  errorArrival: false
 };
 
 const reducerGlobal = (state = globalInfos, action) => {
@@ -21,6 +23,18 @@ const reducerGlobal = (state = globalInfos, action) => {
     return {
       ...state,
       showLoading: action.showLoading
+    };
+  }
+  if (action.type === "ERROR_ARRIVAL") {
+    return {
+      ...state,
+      errorArrival: action.errorArrival
+    };
+  }
+  if (action.type === "ERROR_DEPARTURE") {
+    return {
+      ...state,
+      errorDeparture: action.errorDeparture
     };
   }
   return state;
