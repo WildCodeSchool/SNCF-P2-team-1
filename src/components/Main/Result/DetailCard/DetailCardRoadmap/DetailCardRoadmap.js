@@ -51,8 +51,8 @@ function DetailCardRoadmap({match}) {
           </span>
           <div className="my-2 zoneTarif">
             Zone {data.zones ? data.zones.min : ' '} -{' '}
-            {data.zones ? data.zones.max : ' '} | Tarifs :{' - '}
-            {data.price ? data.price / 100 : ' '}
+            {data.zones ? data.zones.max : ' '} | Tarifs :{' '}
+            {data.price ? data.price / 100 + ' €' : ' - '}
           </div>
           {dataDetails
             .filter(detail => _get(detail, 'departure', false))
