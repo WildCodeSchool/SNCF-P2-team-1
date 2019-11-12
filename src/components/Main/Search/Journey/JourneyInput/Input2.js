@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import MenuSuggestions from "./MenuSuggestions";
 
 class Input2 extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Input2 extends React.Component {
         inputvalue: false
       }));
     }
+    this.props.backToRegularInput();
   };
 
   suggestionsSelected = x => {
@@ -64,38 +66,38 @@ class Input2 extends React.Component {
       suggestions: [],
       inputvalue: false
     }));
+    this.props.emptyArrival();
   };
 
-  renderSuggestions = () => {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
-      return false;
-    }
-    return (
-      <ul className="UlSuggestions">
-        {suggestions.map((x, index) => (
-          <li
-            className="LiSuggestions"
-            key={index}
-            onClick={() => this.suggestionsSelected(x)}
-          >
-            {x.name}
-          </li>
-        ))}
-      </ul>
-    );
+  setActive = () => {
+    this.setState(() => ({
+      items: [],
+      suggestions: []
+    }));
   };
+
   render() {
-    const { text, inputvalue } = this.state;
+    const { text, inputvalue, suggestions } = this.state;
+    const { errorArrival } = this.props;
     return (
       <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Aller à</label>
         <input
           value={text}
+          onClick={() => this.props.emptyArrival()}
+          onFocus={this.onTextChange}
           onChange={this.onTextChange}
           type="text"
-          className="form-input  form-input-go-to"
-          placeholder="Gare, station, lieu, adresse"
+          className={
+            errorArrival
+              ? "form-input form-input-go-to errorInput"
+              : "form-input form-input-go-to"
+          }
+          placeholder={
+            errorArrival
+              ? "Arrivée: veuillez préciser votre demande"
+              : "Gare, station, lieu, adresse"
+          }
         />
         <button
           className={
@@ -108,12 +110,23 @@ class Input2 extends React.Component {
             <FontAwesomeIcon icon={faTimes} />
           </i>
         </button>
-
-        {this.renderSuggestions()}
+        {suggestions.length === 0 ? null : (
+          <MenuSuggestions
+            suggestions={this.state.suggestions}
+            suggestionsSelected={this.suggestionsSelected}
+            setActive={this.setActive}
+          />
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    errorArrival: state.reducerGlobal.errorArrival
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     newArrival: x => {
@@ -121,10 +134,19 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "ADD_ARRIVAL_ID", id: x.id });
       dispatch({ type: "ADD_ARRIVAL_LAT", arrivalLatitude: x.coord.lat });
       dispatch({ type: "ADD_ARRIVAL_LON", arrivalLongitude: x.coord.lon });
+    },
+    emptyArrival: () => {
+      dispatch({ type: "EMPTY_ARRIVAL", empty: null });
+    },
+    backToRegularInput: () => {
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorDeparture: false
+      });
     }
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Input2);

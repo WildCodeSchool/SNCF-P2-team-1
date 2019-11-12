@@ -2,7 +2,11 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faExclamationCircle
+} from "@fortawesome/free-solid-svg-icons";
+import MenuSuggestions from "./MenuSuggestions";
 
 class Input1 extends React.Component {
   constructor(props) {
@@ -33,12 +37,7 @@ class Input1 extends React.Component {
   onTextChange = e => {
     const value = e.target.value;
     this.getPlaces(value);
-    let suggestions = [];
-    if (value.length > 0) {
-      suggestions = this.state.items;
-    }
     this.setState(() => ({
-      suggestions,
       text: value,
       inputvalue: true
     }));
@@ -47,6 +46,7 @@ class Input1 extends React.Component {
         inputvalue: false
       }));
     }
+    this.props.backToRegularInput();
   };
 
   suggestionsSelected = x => {
@@ -64,38 +64,37 @@ class Input1 extends React.Component {
       suggestions: [],
       inputvalue: false
     }));
+    this.props.emptyDeparture();
+  };
+  setActive = () => {
+    this.setState(() => ({
+      items: [],
+      suggestions: []
+    }));
   };
 
-  renderSuggestions = () => {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
-      return false;
-    }
-    return (
-      <ul className="UlSuggestions">
-        {suggestions.map((x, index) => (
-          <li
-            className="LiSuggestions"
-            key={index}
-            onClick={() => this.suggestionsSelected(x)}
-          >
-            {x.name}
-          </li>
-        ))}
-      </ul>
-    );
-  };
   render() {
-    const { text, inputvalue } = this.state;
+    const { text, inputvalue, suggestions } = this.state;
+    const { errorDeparture } = this.props;
     return (
       <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Partir de</label>
         <input
+          onClick={() => this.props.emptyDeparture()}
+          onFocus={this.onTextChange}
           value={text}
           onChange={this.onTextChange}
           type="text"
-          className="form-input form-input-go-from"
-          placeholder="Gare, station, lieu, adresse"
+          className={
+            errorDeparture
+              ? "form-input form-input-go-from errorInput"
+              : "form-input form-input-go-from"
+          }
+          placeholder={
+            errorDeparture
+              ? "Départ: veuillez préciser votre demande"
+              : "Gare, station, lieu, adresse"
+          }
         />
         <button
           className={
@@ -108,12 +107,23 @@ class Input1 extends React.Component {
             <FontAwesomeIcon icon={faTimes} />
           </i>
         </button>
-
-        {this.renderSuggestions()}
+        {suggestions.length === 0 ? null : (
+          <MenuSuggestions
+            suggestions={this.state.suggestions}
+            suggestionsSelected={this.suggestionsSelected}
+            setActive={this.setActive}
+          />
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    errorDeparture: state.reducerGlobal.errorDeparture
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     newDeparture: x => {
@@ -124,10 +134,19 @@ const mapDispatchToProps = dispatch => {
         type: "ADD_DEPARTURE_LON",
         departureLongitude: x.coord.lon
       });
+    },
+    emptyDeparture: () => {
+      dispatch({ type: "EMPTY_DEPARTURE", empty: null });
+    },
+    backToRegularInput: () => {
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: false
+      });
     }
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Input1);

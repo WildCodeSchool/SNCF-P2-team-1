@@ -1,3 +1,4 @@
+
 .journey-input {
   display: flex;
   justify-content: space-between;
@@ -34,6 +35,12 @@
 .form-input::placeholder {
   text-indent: 5%;
 }
+.errorInput{
+  border: 1px solid red;
+}
+.errorInput::placeholder{
+  color: red;
+}
 .switch-input {
   cursor: pointer;
   width: 50px;
@@ -57,6 +64,9 @@
   border-radius: 5px;
   padding: 0;
   z-index: 1200;
+}
+.UlSuggestionsShow{
+display: none;
 }
 .UlSuggestions::-webkit-scrollbar {
   -webkit-appearance: none;
