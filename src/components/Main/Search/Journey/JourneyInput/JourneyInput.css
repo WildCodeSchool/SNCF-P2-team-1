@@ -1,3 +1,4 @@
+
 .journey-input {
   display: flex;
   justify-content: space-between;
@@ -16,6 +17,16 @@
   font-size: 1.3rem;
 }
 
+/* .form-input::-webkit-search-cancel-button {
+  position: relative;
+  right: 5%;
+
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  background: green;
+} */
+
 .form-input:focus {
   box-shadow: 0px 0px 0px 3px rgb(0, 136, 206);
   outline-width: 0;
@@ -23,6 +34,12 @@
 
 .form-input::placeholder {
   text-indent: 5%;
+}
+.errorInput{
+  border: 1px solid red;
+}
+.errorInput::placeholder{
+  color: red;
 }
 .switch-input {
   cursor: pointer;
@@ -36,17 +53,20 @@
 
 .UlSuggestions {
   position: absolute;
-  margin-top: .25em;
+  margin-top: 0.25em;
   width: 96%;
   height: 158px;
   overflow-y: scroll;
   background: white;
   list-style: none;
   border: 1px solid #0088ce;
-  color:#0088ce;
+  color: #0088ce;
   border-radius: 5px;
-  padding:0;
+  padding: 0;
   z-index: 1200;
+}
+.UlSuggestionsShow{
+display: none;
 }
 .UlSuggestions::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -57,27 +77,52 @@
 }
 .UlSuggestions::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   height: 30px;
 }
 .LiSuggestions {
-  padding: .5em;
+  padding: 0.5em;
   cursor: pointer;
   border-bottom: solid rgb(207, 204, 204) 1px;
 }
-.LiSuggestions:last-child { border: 0; ;}
-.LiSuggestions:hover{
+.LiSuggestions:last-child {
+  border: 0;
+}
+.LiSuggestions:hover {
   color: white;
   background-color: #0088ce;
 }
 
+.delete-input {
+  position: absolute;
+  top: 53%;
+  right: 5%;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 20px;
+  color: gray;
+  visibility: hidden;
+}
+
+.delete-input-active {
+  visibility: visible;
+}
+
+.delete-input:focus {
+  outline: none;
+}
 
 @media screen and (max-width: 1023px) {
   .journey-input {
     flex-direction: column;
     justify-content: space-around;
   }
-  .form-input-go-from {
+  .form-input {
     margin-bottom: 10px;
+  }
+
+  .delete-input {
+    top: 48%;
+    right: 3%;
   }
 }

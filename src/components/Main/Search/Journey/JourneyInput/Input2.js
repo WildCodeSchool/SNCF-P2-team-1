@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import MenuSuggestions from "./MenuSuggestions";
 
 class Input2 extends React.Component {
   constructor(props) {
@@ -8,7 +11,8 @@ class Input2 extends React.Component {
     this.state = {
       items: [],
       suggestions: [],
-      text: ""
+      text: "",
+      inputvalue: false
     };
   }
 
@@ -36,8 +40,15 @@ class Input2 extends React.Component {
     }
     this.setState(() => ({
       suggestions,
-      text: value
+      text: value,
+      inputvalue: true
     }));
+    if (value.length === 0) {
+      this.setState(() => ({
+        inputvalue: false
+      }));
+    }
+    this.props.backToRegularInput();
   };
 
   suggestionsSelected = x => {
@@ -48,43 +59,74 @@ class Input2 extends React.Component {
     this.props.newArrival(x);
   };
 
-  renderSuggestions = () => {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
-      return false;
-    }
-    return (
-      <ul className="UlSuggestions">
-        {suggestions.map(x => (
-          <li
-            className="LiSuggestions"
-            key={x.shortName}
-            onClick={() => this.suggestionsSelected(x)}
-          >
-            {x.name}
-          </li>
-        ))}
-      </ul>
-    );
+  clearInput = () => {
+    this.setState(() => ({
+      text: "",
+      items: [],
+      suggestions: [],
+      inputvalue: false
+    }));
+    this.props.emptyArrival();
   };
+
+  setActive = () => {
+    this.setState(() => ({
+      items: [],
+      suggestions: []
+    }));
+  };
+
   render() {
-    const { text } = this.state;
+    const { text, inputvalue, suggestions } = this.state;
+    const { errorArrival } = this.props;
     return (
       <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Aller à</label>
         <input
           value={text}
+          onClick={() => this.props.emptyArrival()}
+          onFocus={this.onTextChange}
           onChange={this.onTextChange}
           type="text"
-          className="form-input  form-input-go-to"
-          placeholder="Gare, station, lieu, adresse"
+          className={
+            errorArrival
+              ? "form-input form-input-go-to errorInput"
+              : "form-input form-input-go-to"
+          }
+          placeholder={
+            errorArrival
+              ? "Arrivée: veuillez préciser votre demande"
+              : "Gare, station, lieu, adresse"
+          }
         />
-
-        {this.renderSuggestions()}
+        <button
+          className={
+            inputvalue ? "delete-input delete-input-active" : "delete-input"
+          }
+          id="button1"
+          onClick={this.clearInput}
+        >
+          <i>
+            <FontAwesomeIcon icon={faTimes} />
+          </i>
+        </button>
+        {suggestions.length === 0 ? null : (
+          <MenuSuggestions
+            suggestions={this.state.suggestions}
+            suggestionsSelected={this.suggestionsSelected}
+            setActive={this.setActive}
+          />
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    errorArrival: state.reducerGlobal.errorArrival
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     newArrival: x => {
@@ -92,10 +134,19 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "ADD_ARRIVAL_ID", id: x.id });
       dispatch({ type: "ADD_ARRIVAL_LAT", arrivalLatitude: x.coord.lat });
       dispatch({ type: "ADD_ARRIVAL_LON", arrivalLongitude: x.coord.lon });
+    },
+    emptyArrival: () => {
+      dispatch({ type: "EMPTY_ARRIVAL", empty: null });
+    },
+    backToRegularInput: () => {
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorDeparture: false
+      });
     }
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Input2);

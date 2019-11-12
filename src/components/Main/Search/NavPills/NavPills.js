@@ -3,7 +3,6 @@ import "./NavPills.css";
 
 function NavPills(props) {
   const changePath = pathname => {
-    window.history.pushState("page2", "Title", pathname);
     props.setSearchPage(pathname);
   };
   const [isActive, setIsActive] = useState(true);

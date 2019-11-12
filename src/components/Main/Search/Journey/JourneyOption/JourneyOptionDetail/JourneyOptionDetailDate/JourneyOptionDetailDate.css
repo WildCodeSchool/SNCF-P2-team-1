@@ -579,6 +579,9 @@
     box-shadow: 0px 0px 0px 3px rgb(0, 136, 206);
     outline-width: 0;
 }
+.react-datepicker-ignore-onclickoutside::placeholder{
+  font-size: 16px;
+}
 
 .react-datepicker__year-read-view,
 .react-datepicker__month-read-view,

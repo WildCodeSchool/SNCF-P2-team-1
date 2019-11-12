@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "https://www.transilien.com/",
   "dependencies": {
+    "@emotion/core": "^10.0.22",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
@@ -12,6 +13,8 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "react": "^16.10.2",
+    "react-alert": "^6.0.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-datepicker": "^2.9.6",
     "react-dom": "^16.10.2",
     "react-moment": "^0.9.6",
