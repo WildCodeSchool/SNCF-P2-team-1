@@ -13,6 +13,15 @@ function JourneyOptionSubmit() {
   };
 
   const getJourney = () => {
+    //verifie l'heure choisie
+    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+    if (!regex.test(dataRequest.time)) {
+      dataRequest.time = `${new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      })}`;
+    }
+    //verifie l'input départ
     if (dataRequest.departure) {
       console.log(dataRequest.departure);
     } else {
@@ -25,6 +34,7 @@ function JourneyOptionSubmit() {
       );
       return;
     }
+    //verifie l'input arrivée
     if (dataRequest.arrival) {
       console.log(dataRequest.arrival);
     } else {
@@ -47,7 +57,6 @@ function JourneyOptionSubmit() {
     axios
       .post("/api/itinerary/search", dataRequest)
       .then(function(response) {
-        /* console.log(response.data.journeys); */
         dispatch({
           type: "ADD_RESULTS_REQUEST",
           resultsJourneys: response.data
@@ -79,7 +88,4 @@ function JourneyOptionSubmit() {
   );
 }
 
-export default connect(
-  null,
-  null
-)(JourneyOptionSubmit);
+export default connect(null, null)(JourneyOptionSubmit);
