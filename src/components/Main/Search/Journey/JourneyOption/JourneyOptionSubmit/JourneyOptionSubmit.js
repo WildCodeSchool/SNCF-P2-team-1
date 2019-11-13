@@ -1,16 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { useAlert } from "react-alert";
+import { ToastsContainer, ToastsStore } from "react-toasts";
 
 function JourneyOptionSubmit() {
   const dataRequest = useSelector(state => state.reducerRequest);
   const dispatch = useDispatch();
-  const alert = useAlert();
-
-  const cssAlert = {
-    color: "white"
-  };
 
   const getJourney = () => {
     //verifie l'heure choisie
@@ -29,9 +24,7 @@ function JourneyOptionSubmit() {
         type: "ERROR_DEPARTURE",
         errorDeparture: true
       });
-      alert.error(
-        <div style={cssAlert}>Départ: veuillez préciser votre demande</div>
-      );
+      ToastsStore.error("Départ: veuillez précisez votre demande");
       return;
     }
     //verifie l'input arrivée
@@ -42,7 +35,7 @@ function JourneyOptionSubmit() {
         type: "ERROR_ARRIVAL",
         errorArrival: true
       });
-      alert.error("Arrivée: veuillez préciser votre demande");
+      ToastsStore.error("Arrivée: veuillez précisez votre demande");
       return;
     }
 
@@ -80,10 +73,13 @@ function JourneyOptionSubmit() {
       <button
         type="submit"
         className="btn btn-primary my-3"
-        onClick={() => getJourney()}
+        onClick={() => {
+          getJourney();
+        }}
       >
         RECHERCHER
       </button>
+      <ToastsContainer store={ToastsStore} />
     </div>
   );
 }
