@@ -11,7 +11,6 @@ class Input2 extends React.Component {
     this.state = {
       items: [],
       suggestions: [],
-      text: "",
       inputvalue: false
     };
   }
@@ -23,7 +22,6 @@ class Input2 extends React.Component {
     axios
       .get(`/api/places?search=${y}`, {})
       .then(data => {
-        console.log(data.data);
         this.setState({
           suggestions: data.data.places.map(x => x)
         });
@@ -40,7 +38,6 @@ class Input2 extends React.Component {
     }
     this.setState(() => ({
       suggestions,
-      text: value,
       inputvalue: true
     }));
     if (value.length === 0) {
@@ -49,11 +46,11 @@ class Input2 extends React.Component {
       }));
     }
     this.props.backToRegularInput();
+    this.props.textarrival(value);
   };
 
   suggestionsSelected = x => {
     this.setState(() => ({
-      text: x.name,
       suggestions: []
     }));
     this.props.newArrival(x);
@@ -61,7 +58,6 @@ class Input2 extends React.Component {
 
   clearInput = () => {
     this.setState(() => ({
-      text: "",
       items: [],
       suggestions: [],
       inputvalue: false
@@ -77,15 +73,14 @@ class Input2 extends React.Component {
   };
 
   render() {
-    const { text, inputvalue, suggestions } = this.state;
-    const { errorArrival } = this.props;
+    const { inputvalue, suggestions } = this.state;
+    const { errorArrival, arrival } = this.props;
     return (
       <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Aller à</label>
         <input
-          value={text}
-          onClick={() => this.props.emptyArrival()}
           onFocus={this.onTextChange}
+          value={arrival}
           onChange={this.onTextChange}
           type="text"
           className={
@@ -124,6 +119,7 @@ class Input2 extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    arrival: state.reducerRequest.arrival,
     errorArrival: state.reducerGlobal.errorArrival
   };
 };
@@ -136,13 +132,16 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "ADD_ARRIVAL_LON", arrivalLongitude: x.coord.lon });
     },
     emptyArrival: () => {
-      dispatch({ type: "EMPTY_ARRIVAL", empty: null });
+      dispatch({ type: "EMPTY_ARRIVAL" });
     },
     backToRegularInput: () => {
       dispatch({
         type: "ERROR_ARRIVAL",
         errorDeparture: false
       });
+    },
+    textarrival: x => {
+      dispatch({ type: "ADD_ARRIVAL_NAME", arrival: x });
     }
   };
 };
