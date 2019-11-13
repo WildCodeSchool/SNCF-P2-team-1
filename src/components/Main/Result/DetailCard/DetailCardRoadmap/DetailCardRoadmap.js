@@ -106,7 +106,9 @@ function DetailCardRoadmap({match}) {
                     <li>
                       <p className="my-0">{detail.departure.label}</p>
                       <span className="direction">
-                        {data.zones ? 'dir.' + detail.direction : ' '}
+                        {detail.type === 'WALKING'
+                          ? ' '
+                          : 'dir ' + detail.direction}
                       </span>
                     </li>
                     <li>
