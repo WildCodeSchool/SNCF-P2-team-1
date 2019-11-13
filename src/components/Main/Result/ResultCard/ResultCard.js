@@ -8,6 +8,25 @@ import "./ResultCard.css";
 import logoRER_A from "../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg";
 import logoRER_B from "../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg";
 
+export function toPrice(value) {
+  const price = value.toString();
+
+  if (price.length === 1) {
+    return "0.0" + price + "€";
+  }
+  if (price.length === 2) {
+    return "0." + price + "€";
+  }
+  if (price.length === 3) {
+    return [price.slice(0, 1) + "." + price.slice(1)].join() + "€";
+  }
+  if (price.length === 4) {
+    return [price.slice(0, 2) + "." + price.slice(2)].join() + "€";
+  } else {
+    return "-";
+  }
+}
+
 function ResultCard() {
   const result = useSelector(state => state.reducerGlobal.resultsJourneys);
   return (
@@ -106,7 +125,7 @@ function ResultCard() {
                 <li>
                   <ul>
                     <li className="result-price">
-                      {journey.price ? journey.price / 100 + "0 €" : "-"}
+                      {journey.price ? toPrice(journey.price) : "-"}
                     </li>
                     <li className="result-details">
                       <Link to={`/details${index}`}>Détails</Link>
@@ -122,7 +141,4 @@ function ResultCard() {
   );
 }
 
-export default connect(
-  null,
-  null
-)(ResultCard);
+export default connect(null, null)(ResultCard);
