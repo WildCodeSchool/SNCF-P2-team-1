@@ -10,6 +10,7 @@ import logoRER_B from "../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg";
 
 export function toPrice(value) {
   const price = value.toString();
+
   if (price.length === 1) {
     return "0.0" + price + "€";
   }
@@ -123,7 +124,9 @@ function ResultCard() {
                 </li>
                 <li>
                   <ul>
-                    <li className="result-price">{toPrice(journey.price)}</li>
+                    <li className="result-price">
+                      {journey.price ? toPrice(journey.price) : "-"}
+                    </li>
                     <li className="result-details">
                       <Link to={`/details${index}`}>Détails</Link>
                     </li>
