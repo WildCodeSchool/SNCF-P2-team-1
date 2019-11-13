@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWalking, faClock } from "@fortawesome/free-solid-svg-icons";
 import "./DetailCardRoadmap.css";
 import TransportIcon from "./Icon/TransportIcon";
+import { toPrice } from "../../ResultCard/ResultCard";
 
 function DetailCardRoadmap({ match }) {
   let history = useHistory();
@@ -51,8 +52,7 @@ function DetailCardRoadmap({ match }) {
           </span>
           <div className="my-2 zoneTarif">
             Zone {data.zones ? data.zones.min : " "} -{" "}
-            {data.zones ? data.zones.max : " "} | Tarifs :{" "}
-            {data.price ? data.price / 100 + "€" : " - "}
+            {data.zones ? data.zones.max : " "} | Tarifs : {toPrice(data.price)}
           </div>
           {dataDetails
             .filter(detail => _get(detail, "departure", false))
