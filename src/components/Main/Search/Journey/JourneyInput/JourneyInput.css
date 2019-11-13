@@ -17,15 +17,6 @@
   font-size: 1.3rem;
 }
 
-/* .form-input::-webkit-search-cancel-button {
-  position: relative;
-  right: 5%;
-
-  -webkit-appearance: none;
-  height: 10px;
-  width: 10px;
-  background: green;
-} */
 
 .form-input:focus {
   box-shadow: 0px 0px 0px 3px rgb(0, 136, 206);

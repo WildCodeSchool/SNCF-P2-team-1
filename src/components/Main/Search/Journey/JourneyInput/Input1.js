@@ -2,11 +2,9 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faExclamationCircle
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import MenuSuggestions from "./MenuSuggestions";
+
 
 class Input1 extends React.Component {
   constructor(props) {
@@ -146,7 +144,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Input1);
+export default connect(mapStateToProps, mapDispatchToProps)(Input1);
