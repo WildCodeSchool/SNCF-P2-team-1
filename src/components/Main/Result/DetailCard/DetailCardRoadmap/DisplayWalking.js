@@ -3,7 +3,8 @@ import Moment from 'react-moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWalking} from '@fortawesome/free-solid-svg-icons';
 
-function DisplayWalking({data, displayArrival}) {
+function DisplayWalking({data, index}) {
+  const displayArrival = index === 0;
   return (
     <div className="col-12 displayWalking">
       <div className="row">

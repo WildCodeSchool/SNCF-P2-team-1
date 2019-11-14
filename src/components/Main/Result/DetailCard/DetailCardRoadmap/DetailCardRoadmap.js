@@ -25,24 +25,13 @@ function DetailCardRoadmap({match}) {
   const dataDetails = data.sections;
 
   function transportType(details, index) {
-    const displayArrival = index !== dataDetails.length - 1;
-
     switch (details.type) {
       case 'TRANSFER':
-        return (
-          <DisplayTransfer data={details} displayArrival={displayArrival} />
-        );
+        return <DisplayTransfer data={details} index={index} />;
       case 'WALKING':
-        return (
-          <DisplayWalking data={details} displayArrival={displayArrival} />
-        );
+        return <DisplayWalking data={details} index={index} />;
       case 'TRANSPORT':
-        return (
-          <DisplayTransportType
-            data={details}
-            displayArrival={displayArrival}
-          />
-        );
+        return <DisplayTransportType data={details} index={index} />;
       default:
         break;
     }
