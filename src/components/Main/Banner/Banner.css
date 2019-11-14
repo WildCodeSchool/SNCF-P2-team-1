@@ -4,7 +4,7 @@
 }
 
 .banner {
-    background-image: url(../../../resources/img/banner-transilien.jpg);
+    background-image: url("https://www.transilien.com/sites/default/files/bandeaux_hp/liberte_plus_2048.png");
     background-position: 50% 25%;
     background-repeat: no-repeat;
     background-size: cover;

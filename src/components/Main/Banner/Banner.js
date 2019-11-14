@@ -6,7 +6,7 @@ function Banner() {
     <div className="container banner-scnf d-none d-lg-block">
       <div className="banner ">
         <a
-          href="https://www.transilien.com/fr/acheter-mon-forfait-navigo-en-ligne"
+          href="https://www.transilien.com/fr/page-editoriale/navigo-liberte-plus"
           aria-label="lien Navigo"
         >
           {" "}
