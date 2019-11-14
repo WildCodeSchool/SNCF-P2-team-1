@@ -17,6 +17,27 @@ function JourneyOptionSubmit() {
       })}`;
     }
     //verifie l'input départ
+    if (dataRequest.departure === dataRequest.arrival) {
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: true
+      });
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorArrival: true
+      });
+      ToastsStore.error("Les itinéraires ne peuvent pas être identiques");
+      return;
+    } else {
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorArrival: false
+      });
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: false
+      });
+    }
     if (dataRequest.departureId) {
       console.log(dataRequest.departure);
     } else {
