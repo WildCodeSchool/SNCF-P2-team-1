@@ -3,8 +3,7 @@ import Moment from 'react-moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWalking} from '@fortawesome/free-solid-svg-icons';
 
-function DisplayWalking({data, index}) {
-  const displayArrival = index === 0;
+function DisplayWalking({data, displayArrival}) {
   return (
     <div className="col-12 displayWalking">
       <div className="row">
@@ -39,7 +38,7 @@ function DisplayWalking({data, index}) {
             <i>
               <FontAwesomeIcon icon={faWalking} />
             </i>
-            <span>Marche ({data.walkingDistance})</span>
+            <span>Marche ({data.walkingDistance} m)</span>
           </div>
           <div className="text-uppercase">
             {displayArrival ? '' : data.arrival.label}
