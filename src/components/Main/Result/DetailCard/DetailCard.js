@@ -1,15 +1,15 @@
-import React from "react";
-import "./DetailCard.css";
-import DetailCardRecap from "./DetailCardRecap/DetailCardRecap";
-import DetailCardRoadmap from "./DetailCardRoadmap/DetailCardRoadmap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import './DetailCard.css';
+import DetailCardRecap from './DetailCardRecap/DetailCardRecap';
+import DetailCardRoadmap from './DetailCardRoadmap/DetailCardRoadmap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import {useHistory} from 'react-router-dom';
 
-const DetailCard = ({ match }) => {
+const DetailCard = ({match}) => {
   let history = useHistory();
   function handleClick() {
-    history.push("/");
+    history.push('/');
   }
   return (
     <div className="container container-DetailCard">
@@ -17,7 +17,7 @@ const DetailCard = ({ match }) => {
         <p className="returnToResults" onClick={handleClick}>
           <i>
             <FontAwesomeIcon icon={faChevronLeft} />
-          </i>{" "}
+          </i>{' '}
           RETOUR AUX RÉSULTATS
         </p>
         <DetailCardRecap />

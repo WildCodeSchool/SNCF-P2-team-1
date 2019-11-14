@@ -1,29 +1,29 @@
-import React from "react";
-import Moment from "react-moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWalking, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { connect, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import "./ResultCard.css";
-import logoRER_A from "../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg";
-import logoRER_B from "../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg";
+import React from 'react';
+import Moment from 'react-moment';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faWalking, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
+import {connect, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+import './ResultCard.css';
+import logoRER_A from '../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg';
+import logoRER_B from '../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg';
 
 export function toPrice(value) {
   const price = value.toString();
 
   if (price.length === 1) {
-    return "0.0" + price + "€";
+    return '0.0' + price + '€';
   }
   if (price.length === 2) {
-    return "0." + price + "€";
+    return '0.' + price + '€';
   }
   if (price.length === 3) {
-    return [price.slice(0, 1) + "." + price.slice(1)].join() + "€";
+    return [price.slice(0, 1) + '.' + price.slice(1)].join() + '€';
   }
   if (price.length === 4) {
-    return [price.slice(0, 2) + "." + price.slice(2)].join() + "€";
+    return [price.slice(0, 2) + '.' + price.slice(2)].join() + '€';
   } else {
-    return "-";
+    return '-';
   }
 }
 
@@ -56,19 +56,19 @@ function ResultCard() {
                   </ul>
                   <ul className="result-duration">
                     <li>
-                      {timeDuration.indexOf("M") + 1 === timeDuration.length
-                        ? timeDuration.replace("PT", "")
+                      {timeDuration.indexOf('M') + 1 === timeDuration.length
+                        ? timeDuration.replace('PT', '')
                         : timeDuration
-                            .slice(2, journey.totalDuration.indexOf("M"))
-                            .replace("h", " h ")}{" "}
+                            .slice(2, journey.totalDuration.indexOf('M'))
+                            .replace('h', ' h ')}{' '}
                       min
                     </li>
                     <li className="walkingDuration">
-                      dont{" "}
+                      dont{' '}
                       {timeWalkingDuration.slice(
                         2,
-                        journey.walkingDuration.indexOf("M")
-                      )}{" "}
+                        journey.walkingDuration.indexOf('M')
+                      )}{' '}
                       min
                       <p>de marche</p>
                     </li>
@@ -79,8 +79,8 @@ function ResultCard() {
                     if (transport.transport) {
                       if (transport.transport.line) {
                         if (
-                          transport.transport.mode === "RER" &&
-                          transport.transport.line.label === "A"
+                          transport.transport.mode === 'RER' &&
+                          transport.transport.line.label === 'A'
                         ) {
                           return (
                             <span key={index}>
@@ -89,8 +89,8 @@ function ResultCard() {
                           );
                         }
                         if (
-                          transport.transport.mode === "RER" &&
-                          transport.transport.line.label === "B"
+                          transport.transport.mode === 'RER' &&
+                          transport.transport.line.label === 'B'
                         ) {
                           return (
                             <span key={index}>
@@ -101,17 +101,17 @@ function ResultCard() {
 
                         return (
                           <span key={index}>
-                            {" "}
-                            {transport.transport.mode}{" "}
+                            {' '}
+                            {transport.transport.mode}{' '}
                             {transport.transport.line.label}
                           </span>
                         );
                       }
-                      if (transport.transport.mode === "WALKING") {
+                      if (transport.transport.mode === 'WALKING') {
                         return (
                           <span className="icon" key={index}>
-                            {" "}
-                            <FontAwesomeIcon icon={faWalking} />{" "}
+                            {' '}
+                            <FontAwesomeIcon icon={faWalking} />{' '}
                           </span>
                         );
                       }
@@ -125,7 +125,7 @@ function ResultCard() {
                 <li>
                   <ul>
                     <li className="result-price">
-                      {journey.price ? toPrice(journey.price) : "-"}
+                      {journey.price ? toPrice(journey.price) : '-'}
                     </li>
                     <li className="result-details">
                       <Link to={`/details${index}`}>Détails</Link>
@@ -141,4 +141,7 @@ function ResultCard() {
   );
 }
 
-export default connect(null, null)(ResultCard);
+export default connect(
+  null,
+  null
+)(ResultCard);
