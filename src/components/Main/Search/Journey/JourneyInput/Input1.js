@@ -12,11 +12,9 @@ class Input1 extends React.Component {
     this.state = {
       items: [],
       suggestions: [],
-      text: "",
       inputvalue: false
     };
   }
-
   getPlaces = y => {
     if (y.length === 0) {
       return false;
@@ -24,7 +22,6 @@ class Input1 extends React.Component {
     axios
       .get(`/api/places?search=${y}`, {})
       .then(data => {
-        console.log(data.data);
         this.setState({
           suggestions: data.data.places.map(x => x)
         });
@@ -34,9 +31,9 @@ class Input1 extends React.Component {
 
   onTextChange = e => {
     const value = e.target.value;
+    this.props.textdeparture(value);
     this.getPlaces(value);
     this.setState(() => ({
-      text: value,
       inputvalue: true
     }));
     if (value.length === 0) {
@@ -45,11 +42,11 @@ class Input1 extends React.Component {
       }));
     }
     this.props.backToRegularInput();
+    
   };
 
   suggestionsSelected = x => {
     this.setState(() => ({
-      text: x.name,
       suggestions: []
     }));
     this.props.newDeparture(x);
@@ -57,7 +54,6 @@ class Input1 extends React.Component {
 
   clearInput = () => {
     this.setState(() => ({
-      text: "",
       items: [],
       suggestions: [],
       inputvalue: false
@@ -72,15 +68,14 @@ class Input1 extends React.Component {
   };
 
   render() {
-    const { text, inputvalue, suggestions } = this.state;
-    const { errorDeparture } = this.props;
+    const { inputvalue, suggestions } = this.state;
+    const { errorDeparture, departure } = this.props;
     return (
       <div className="col-lg-6 col-sm-12">
         <label htmlFor="">Partir de</label>
         <input
-          onClick={() => this.props.emptyDeparture()}
           onFocus={this.onTextChange}
-          value={text}
+          value={departure}
           onChange={this.onTextChange}
           type="text"
           className={
@@ -119,7 +114,8 @@ class Input1 extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    errorDeparture: state.reducerGlobal.errorDeparture
+    departure: state.reducerRequest.departure,
+    errorDeparture:state.reducerGlobal.errorDeparture,
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -134,13 +130,16 @@ const mapDispatchToProps = dispatch => {
       });
     },
     emptyDeparture: () => {
-      dispatch({ type: "EMPTY_DEPARTURE", empty: null });
+      dispatch({ type: "EMPTY_DEPARTURE"});
     },
     backToRegularInput: () => {
       dispatch({
         type: "ERROR_DEPARTURE",
         errorDeparture: false
       });
+    },
+    textdeparture:(x)=>{
+      dispatch({ type: "ADD_DEPARTURE_NAME", departure: x });
     }
   };
 };

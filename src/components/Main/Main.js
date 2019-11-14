@@ -15,7 +15,6 @@ function Main() {
         <Route exact path="/" component={Banner} />
         <Route exact path="/" component={Search} />
         <Route exact path="/" component={Result} />
-
         <ScrollToTop />
         <Switch>
           <Route exact path="/details:index" component={DetailCard} />

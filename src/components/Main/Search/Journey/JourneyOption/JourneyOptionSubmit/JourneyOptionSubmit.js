@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ToastsContainer, ToastsStore } from "react-toasts";
 
 function JourneyOptionSubmit() {
@@ -17,7 +17,7 @@ function JourneyOptionSubmit() {
       })}`;
     }
     //verifie l'input départ
-    if (dataRequest.departure) {
+    if (dataRequest.departureId) {
       console.log(dataRequest.departure);
     } else {
       dispatch({
@@ -28,7 +28,7 @@ function JourneyOptionSubmit() {
       return;
     }
     //verifie l'input arrivée
-    if (dataRequest.arrival) {
+    if (dataRequest.arrivalId) {
       console.log(dataRequest.arrival);
     } else {
       dispatch({
@@ -84,4 +84,4 @@ function JourneyOptionSubmit() {
   );
 }
 
-export default connect(null, null)(JourneyOptionSubmit);
+export default JourneyOptionSubmit;
