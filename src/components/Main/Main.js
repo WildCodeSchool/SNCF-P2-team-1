@@ -6,7 +6,6 @@ import Result from './Result/Result';
 import DetailCard from './Result/DetailCard/DetailCard';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ScrollToTop from '../../ScrolltoTop';
-import ResultCardRoadmap from './Result/ResultCard/ResultCardRoadmap/ResultCardRoadmap';
 
 function Main() {
   return (
@@ -20,7 +19,6 @@ function Main() {
           <Route exact path="/details:index" component={DetailCard} />
         </Switch>
       </BrowserRouter>
-      <ResultCardRoadmap />
     </main>
   );
 }

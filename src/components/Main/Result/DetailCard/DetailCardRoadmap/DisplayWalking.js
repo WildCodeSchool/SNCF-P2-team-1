@@ -9,7 +9,11 @@ function DisplayWalking({data, displayArrival}) {
       <div className="row">
         <div className="col-4 text-right time">
           <div>
-            <Moment format="HH:mm">{data.departure.dateTime}</Moment>
+            {displayArrival ? (
+              <Moment format="HH:mm">{data.departure.dateTime}</Moment>
+            ) : (
+              ''
+            )}
           </div>
           <div className="totalDuration">
             {data.totalDuration
