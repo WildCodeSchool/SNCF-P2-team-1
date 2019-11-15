@@ -5,8 +5,7 @@ import { faWalking, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./ResultCard.css";
-import logoRER_A from "../ResultCard/ressourcesResultCard/img/Logo_RER_A.svg";
-import logoRER_B from "../ResultCard/ressourcesResultCard/img/Logo_RER_B.svg";
+import TransportIcon from "../DetailCard/DetailCardRoadmap/Icon/TransportIcon";
 
 export function toPrice(value) {
   const price = value.toString();
@@ -26,6 +25,26 @@ export function toPrice(value) {
     return "-";
   }
 }
+
+const transportStyle = (value, value2) => {
+  if (value.length > 7) {
+    console.log("above 7");
+    return {
+      color: value2,
+      fontWeight: "bold",
+      fontSize: "16px",
+      marginTop: "-4px"
+    };
+  } else {
+    console.log("below 7");
+    return {
+      color: value2,
+      fontWeight: "bold",
+      fontSize: "20px",
+      marginTop: "1px"
+    };
+  }
+};
 
 function ResultCard() {
   const result = useSelector(state => state.reducerGlobal.resultsJourneys);
@@ -78,32 +97,20 @@ function ResultCard() {
                   {journey.sections.map((transport, index) => {
                     if (transport.transport) {
                       if (transport.transport.line) {
-                        if (
-                          transport.transport.mode === "RER" &&
-                          transport.transport.line.label === "A"
-                        ) {
-                          return (
-                            <span key={index}>
-                              <img src={logoRER_A} alt="rerA" />
-                            </span>
-                          );
-                        }
-                        if (
-                          transport.transport.mode === "RER" &&
-                          transport.transport.line.label === "B"
-                        ) {
-                          return (
-                            <span key={index}>
-                              <img src={logoRER_B} alt="rerB" />
-                            </span>
-                          );
-                        }
-
                         return (
-                          <span key={index}>
+                          <span className="roadmap-icons" key={index}>
                             {" "}
-                            {transport.transport.mode}{" "}
-                            {transport.transport.line.label}
+                            <TransportIcon
+                              icon={`${transport.transport.mode}Card`}
+                            />{" "}
+                            <span
+                              style={transportStyle(
+                                journey.sections,
+                                transport.color
+                              )}
+                            >
+                              {transport.transport.line.label}
+                            </span>{" "}
                           </span>
                         );
                       }
