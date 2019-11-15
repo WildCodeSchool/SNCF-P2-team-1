@@ -1,90 +1,102 @@
 .detail-card-roadmap {
-    padding: 2.1em;
-    border:1px solid #aaa;
-    border-radius: 1em;
+  padding: 2.1em;
+  border: 1px solid #aaa;
+  border-radius: 1em;
 }
 .totalDurationZoneTarif i {
-    color: #0088ce;
+  color: #0088ce;
 }
 .totalDurationZoneTarif strong {
-    display: inline-block;
-    margin-left: .3em;
-    margin-right: .3em;
-    font-weight: normal;
-    font-size: 1.2em;
+  display: inline-block;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  font-weight: normal;
+  font-size: 1.2em;
 }
-.totalDurationZoneTarif div:last-child { font-size: .875em;}
+.totalDurationZoneTarif div:last-child {
+  font-size: 0.875em;
+}
 .transportType .row .col-1 {
-    position: relative;
-    left: 1.6em;
+  position: relative;
+  left: 1.6em;
 }
 .transportType .icon {
-    width: 34px;
-    height: 100%;
-    padding-top: 0em;
-    padding-bottom:.25em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    border-radius: 1em;
+  width: 34px;
+  height: 100%;
+  padding-top: 0em;
+  padding-bottom: 0.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 1em;
 }
-.transportType .informations, .walking, .transport-icon-color {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.transportType .informations,
+.walking,
+.transport-icon-color {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .transport-icon {
-    width: 80%;
+  width: 80%;
 }
-.transport-icon img { width: 100%;}
+.transport-icon img {
+  width: 100%;
+}
 .dotted {
-    position: relative;
-    left: 1.4em;
-    border-left: .6em dotted #ccc;
+  position: relative;
+  left: 1.4em;
+  border-left: 0.6em dotted #ccc;
 }
-.displayWalking .dotted.departure::before, .displayWalking .dotted.arrival::after {
-    content: '';
-    display: inline-block;
-    width: 1.4em;
-    height: 1.4em;
-    background-color: #fff;
-    border-radius: 1em;
-    border: 1px solid #aaa;
+.displayWalking .dotted.departure::before,
+.displayWalking .dotted.arrival::after {
+  content: "";
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  background-color: #fff;
+  border-radius: 1em;
+  border: 1px solid #aaa;
 }
 .displayWalking .dotted.departure::before {
-    position: relative;
-    right: 1.6em;
-    bottom: .3em;
+  position: relative;
+  right: 1.6em;
+  bottom: 0.3em;
 }
 .displayWalking .dotted.arrival::after {
-    position: absolute;
-    left: -16px;
-    bottom: -.3em;
+  position: absolute;
+  left: -16px;
+  bottom: -0.3em;
 }
 .totalDuration {
-    padding-top:3em;
-    padding-bottom:3em;
-    color: #777;
-    font-size: .9em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  color: #777;
+  font-size: 0.9em;
 }
 .transition {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.transition span, .walking span { font-size: .875em; }
-.walking i { font-size: 1.2em;}
+.transition span,
 .walking span {
-    display: inline-block;
-    margin-left: 1em;
+  font-size: 0.875em;
+}
+.walking i {
+  font-size: 1.2em;
+}
+.walking span {
+  display: inline-block;
+  margin-left: 1em;
 }
 .icon .circle {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-color: #fff;
-    border-radius: 1em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: #fff;
+  border-radius: 1em;
 }
