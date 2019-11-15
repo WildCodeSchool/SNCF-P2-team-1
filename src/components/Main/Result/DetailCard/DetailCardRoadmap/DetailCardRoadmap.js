@@ -26,22 +26,30 @@ function DetailCardRoadmap({match}) {
 
   function transportType(details, index) {
     const displayArrival = index === 0;
+
+    function walkingStyle() {
+      if (dataDetails.length === 1 && details.transport.mode === 'WALKING') {
+        return 'col-2 dotted mx-0 py-0 departure arrival';
+      } else if (index === 0) {
+        return 'col-2 dotted mx-0 py-0 departure';
+      } else {
+        return 'col-2 dotted mx-0 py-0 arrival';
+      }
+    }
+
     switch (details.type) {
       case 'TRANSFER':
-        return (
-          <DisplayTransfer data={details} displayArrival={displayArrival} />
-        );
+        return <DisplayTransfer data={details} />;
       case 'WALKING':
         return (
-          <DisplayWalking data={details} displayArrival={displayArrival} />
-        );
-      case 'TRANSPORT':
-        return (
-          <DisplayTransportType
+          <DisplayWalking
             data={details}
             displayArrival={displayArrival}
+            walkingStyle={walkingStyle}
           />
         );
+      case 'TRANSPORT':
+        return <DisplayTransportType data={details} />;
       default:
         break;
     }

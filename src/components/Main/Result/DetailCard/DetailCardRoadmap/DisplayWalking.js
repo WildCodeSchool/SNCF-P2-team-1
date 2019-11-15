@@ -3,7 +3,17 @@ import Moment from 'react-moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWalking} from '@fortawesome/free-solid-svg-icons';
 
-function DisplayWalking({data, displayArrival}) {
+function DisplayWalking({data, displayArrival, walkingStyle}) {
+  const styleWalk = walkingStyle();
+  const displayArrivalDeparture = styleWalk.includes('departure arrival');
+
+  function showArrival(destination) {
+    if (displayArrivalDeparture) {
+      return destination;
+    } else {
+      return '';
+    }
+  }
   return (
     <div className="col-12 displayWalking">
       <div className="row">
@@ -22,14 +32,17 @@ function DisplayWalking({data, displayArrival}) {
               .replace('h', ' h ')}{' '}
             min
           </div>
+          <div>
+            {displayArrival ? (
+              showArrival(
+                <Moment format="HH:mm">{data.arrival.dateTime}</Moment>
+              )
+            ) : (
+              <Moment format="HH:mm">{data.arrival.dateTime}</Moment>
+            )}
+          </div>
         </div>
-        <div
-          className={
-            displayArrival
-              ? 'col-2 dotted mx-0 py-0 departure'
-              : 'col-2 dotted mx-0 py-0 arrival'
-          }
-        ></div>
+        <div className={styleWalk}></div>
         <div className="col-6 walking">
           <div className="text-uppercase">
             {displayArrival ? data.departure.label : ''}
@@ -41,7 +54,9 @@ function DisplayWalking({data, displayArrival}) {
             <span>Marche ({data.walkingDistance} m)</span>
           </div>
           <div className="text-uppercase">
-            {displayArrival ? '' : data.arrival.label}
+            {displayArrival
+              ? showArrival(data.arrival.label)
+              : data.arrival.label}
           </div>
         </div>
       </div>
