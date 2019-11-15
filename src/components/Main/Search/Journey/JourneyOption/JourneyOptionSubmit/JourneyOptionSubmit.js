@@ -1,38 +1,62 @@
 import React from "react";
 import axios from "axios";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { useAlert } from "react-alert";
+import { useSelector, useDispatch } from "react-redux";
+import { ToastsContainer, ToastsStore } from "react-toasts";
 
 function JourneyOptionSubmit() {
   const dataRequest = useSelector(state => state.reducerRequest);
   const dispatch = useDispatch();
-  const alert = useAlert();
-
-  const cssAlert = {
-    color: "white"
-  };
 
   const getJourney = () => {
-    if (dataRequest.departure) {
+    //verifie l'heure choisie
+    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+    if (!regex.test(dataRequest.time)) {
+      dataRequest.time = `${new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      })}`;
+    }
+    //verifie l'input départ
+    if (dataRequest.departure === dataRequest.arrival) {
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: true
+      });
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorArrival: true
+      });
+      ToastsStore.error("Les itinéraires ne peuvent pas être identiques");
+      return;
+    } else {
+      dispatch({
+        type: "ERROR_ARRIVAL",
+        errorArrival: false
+      });
+      dispatch({
+        type: "ERROR_DEPARTURE",
+        errorDeparture: false
+      });
+    }
+    if (dataRequest.departureId) {
       console.log(dataRequest.departure);
     } else {
       dispatch({
         type: "ERROR_DEPARTURE",
         errorDeparture: true
       });
-      alert.error(
-        <div style={cssAlert}>Départ: veuillez préciser votre demande</div>
-      );
+      ToastsStore.error("Départ: veuillez précisez votre demande");
       return;
     }
-    if (dataRequest.arrival) {
+    //verifie l'input arrivée
+    if (dataRequest.arrivalId) {
       console.log(dataRequest.arrival);
     } else {
       dispatch({
         type: "ERROR_ARRIVAL",
         errorArrival: true
       });
-      alert.error("Arrivée: veuillez préciser votre demande");
+      ToastsStore.error("Arrivée: veuillez précisez votre demande");
       return;
     }
 
@@ -47,7 +71,6 @@ function JourneyOptionSubmit() {
     axios
       .post("/api/itinerary/search", dataRequest)
       .then(function(response) {
-        /* console.log(response.data.journeys); */
         dispatch({
           type: "ADD_RESULTS_REQUEST",
           resultsJourneys: response.data
@@ -71,15 +94,15 @@ function JourneyOptionSubmit() {
       <button
         type="submit"
         className="btn btn-primary my-3"
-        onClick={() => getJourney()}
+        onClick={() => {
+          getJourney();
+        }}
       >
         RECHERCHER
       </button>
+      <ToastsContainer store={ToastsStore} />
     </div>
   );
 }
 
-export default connect(
-  null,
-  null
-)(JourneyOptionSubmit);
+export default JourneyOptionSubmit;

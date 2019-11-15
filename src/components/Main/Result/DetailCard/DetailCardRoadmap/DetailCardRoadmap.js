@@ -1,14 +1,15 @@
-import React from "react";
-import _get from "lodash/get";
-import Moment from "react-moment";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWalking, faClock } from "@fortawesome/free-solid-svg-icons";
-import "./DetailCardRoadmap.css";
-import TransportIcon from "./Icon/TransportIcon";
+import React from 'react';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faWalking, faClock} from '@fortawesome/free-solid-svg-icons';
+import './DetailCardRoadmap.css';
+import DisplayTransfer from './DisplayTransfer';
+import DisplayWalking from './DisplayWalking';
+import DisplayTransportType from './DisplayTransportType';
+import {toPrice} from '../../ResultCard/ResultCard';
 
-function DetailCardRoadmap({ match }) {
+function DetailCardRoadmap({match}) {
   let history = useHistory();
   //Data Itineraire
   const data = useSelector(
@@ -18,110 +19,91 @@ function DetailCardRoadmap({ match }) {
   );
   //retourne a l'acceuil si aucune données reçus
   if (!data) {
-    history.push("/");
+    history.push('/');
     return null;
   }
   const dataDetails = data.sections;
 
+  function transportType(details, index) {
+    const displayArrival = index === 0;
+
+    function walkingStyle() {
+      if (dataDetails.length === 1 && details.transport.mode === 'WALKING') {
+        return 'col-2 dotted mx-0 py-0 departure arrival';
+      } else if (index === 0) {
+        return 'col-2 dotted mx-0 py-0 departure';
+      } else {
+        return 'col-2 dotted mx-0 py-0 arrival';
+      }
+    }
+
+    switch (details.type) {
+      case 'TRANSFER':
+        return <DisplayTransfer data={details} />;
+      case 'WALKING':
+        return (
+          <DisplayWalking
+            data={details}
+            displayArrival={displayArrival}
+            walkingStyle={walkingStyle}
+          />
+        );
+      case 'TRANSPORT':
+        return <DisplayTransportType data={details} />;
+      default:
+        break;
+    }
+  }
+
   return (
-    <div className="col-12 py-0 px-0">
-      <div className="detail-card-result">
-        <div className="totalDuration">
-          <i>
-            <FontAwesomeIcon icon={faClock} />
-          </i>
-          <strong>
-            {" "}
-            {data.totalDuration
-              .slice(2, data.totalDuration.indexOf("M"))
-              .toLowerCase()
-              .replace("h", " h ")}{" "}
-            min{" "}
-          </strong>
-          <span>
-            {" "}
-            dont{" "}
-            <i>
-              <FontAwesomeIcon icon={faWalking} />
-            </i>{" "}
-            {data.walkingDuration
-              .toLowerCase()
-              .slice(2, data.walkingDuration.indexOf("M"))}{" "}
-            min
-          </span>
-          <div className="my-2 zoneTarif">
-            Zone {data.zones ? data.zones.min : " "} -{" "}
-            {data.zones ? data.zones.max : " "} | Tarifs :{" "}
-            {data.price ? data.price / 100 + "€" : " - "}
-          </div>
-          {dataDetails
-            .filter(detail => _get(detail, "departure", false))
-            .map((detail, index) => {
-              const color = detail.color;
-              const transportColor = {
-                backgroundColor: `${color}`,
-                margin: "1em",
-                padding: ".5em"
-              };
-              const iconTransport = detail.transport.mode;
+    <div className="container">
+      <div className="row">
+        <div className="col-12 mx-0 px-0">
+          <div className="detail-card-roadmap mb-4">
+            <div className="row">
+              <div className="col-12 totalDurationZoneTarif mb-5">
+                <div className="mb-2">
+                  <i>
+                    <FontAwesomeIcon icon={faClock} />
+                  </i>
+                  <strong>
+                    {data.totalDuration
+                      .slice(2, data.totalDuration.indexOf('M'))
+                      .toLowerCase()
+                      .replace('h', ' h ')}
+                    min
+                  </strong>
+                  <span>
+                    dont{' '}
+                    <i>
+                      {' '}
+                      <FontAwesomeIcon icon={faWalking} />
+                    </i>{' '}
+                    {data.walkingDuration
+                      .toLowerCase()
+                      .slice(2, data.walkingDuration.indexOf('M'))}{' '}
+                    min de marche
+                  </span>
+                </div>
+                <div className="ml-4">
+                  Zone {data.zones ? data.zones.min : ' '} -{' '}
+                  {data.zones ? data.zones.max : ' '} | Tarifs :{' '}
+                  {data.price ? toPrice(data.price) : '-'}
+                </div>
+              </div>
+            </div>
+            {dataDetails.map((details, index) => {
               return (
-                <div key={index} className="detail-result d-flex my-5">
-                  <ul className="time">
-                    <li>
-                      <Moment format="HH:mm">
-                        {detail.departure.dateTime}
-                      </Moment>
-                    </li>
-                    <li className="duration">
-                      {detail.totalDuration
-                        .slice(2, detail.totalDuration.length - 1)
-                        .toLowerCase()
-                        .replace("h", " h ")}{" "}
-                      min
-                    </li>
-                    <li>
-                      <Moment format="HH:mm">{detail.arrival.dateTime}</Moment>
-                    </li>
-                  </ul>
-                  <ul className="transportColor" style={transportColor}>
-                    <li>
-                      <TransportIcon icon={iconTransport} />
-                    </li>
-                    <li
-                      className={
-                        detail.transport.mode === "WALKING" ? "dotted" : ""
-                      }
-                    ></li>
-                    <li>
-                      {detail.transport.mode === "WALKING" ? (
-                        <i className="walking"></i>
-                      ) : (
-                        ""
-                      )}
-                      <span className="whiteCircle"></span>
-                    </li>
-                  </ul>
-                  <ul className="detail">
-                    <li>
-                      <p className="my-0">{detail.departure.label}</p>
-                      <span className="direction">dir. {detail.direction}</span>
-                    </li>
-                    <li>
-                      {detail.transport.mode === "WALKING" ? (
-                        <FontAwesomeIcon icon={faWalking} />
-                      ) : (
-                        ""
-                      )}
-                    </li>
-                    <li>{detail.arrival.label}</li>
-                  </ul>
+                <div className="row" key={index}>
+                  {transportType(details, index)}
                 </div>
               );
             })}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-//pas besoin de connecter a redux en Hooks
+
 export default DetailCardRoadmap;
